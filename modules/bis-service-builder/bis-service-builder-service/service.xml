@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="spring" package-path="de.twolfinger.liferay_bis_service_builder">
+	<namespace>bis</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="hersteller" remote-service="false" uuid="false" table="hersteller" data-source="extDataSource">
+
+		<!-- PK fields -->
+
+		<column name="id" db-name="id" primary="true" type="long" />
+
+	   	<column name="name" db-name="name" type="String" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+
+		
+	</entity>
+	<entity local-service="true" name="medikamente" remote-service="false" uuid="false" table="medikamente" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="name" db-name="name" type="String" />
+		<column name="hersteller_id" db-name="hersteller_id" type="long" />
+		<column name="dosierung" db-name="dosierung" type="String" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="ableger" remote-service="false" uuid="false" table="ableger" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
+		<column name="datum_ablegerbildung" db-name="datum_ablegerbildung" type="Date" />
+		<column name="muttervolk_id" db-name="muttervolk_id" type="long" />
+		<column name="erfolgreich" db-name="erfolgreich" type="Boolean" />
+		<column name="abgeschlossen" db-name="abgeschlossen" type="Boolean" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="behandlungen" remote-service="false" uuid="false" table="behandlungen" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
+		<column name="medikament_id" db-name="dmedikament_id" type="long" />
+		<column name="beginn" db-name="beginn" type="Date" />
+		<column name="ende" db-name="ende" type="Date" />
+		
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="beutemasse" remote-service="false" uuid="false" table="beutemasse" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="name" db-name="name" type="String" />
+				
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="bienenrassen" remote-service="false" uuid="false" table="bienenrassen" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="name" db-name="name" type="String" />
+				
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="bienenvoelker" remote-service="false" uuid="false" table="bienenvoelker" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
+		<column name="weisel_jahr" db-name="weisel_jahr" type="long" />
+		<column name="bemerkungen" db-name="bemerkungen" type="String" />
+		<column name="muttervolk" db-name="muttervolk" type="long" />
+		<column name="bienenrasse_id" db-name="bienenrasse_id" type="long" />
+		<column name="beutemass_id" db-name="beutemass_id" type="long" />
+		<column name="geo_coordinaten" db-name="geo_coordinaten" type="int[]" />
+		<column name="anschaffung_ableger_jahr" db-name="anschaffung_ableger_jahr" type="int" />
+		<column name="aktiv" db-name="aktiv" type="Boolean" />
+		<column name="aufloesung_tod_jahr" db-name="aufloesung_tod_jahr" type="int" />
+		<column name="gesundheitszeugnis_id" db-name="gesundheitszeugnis_id" type="String" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="fuetterungen" remote-service="false" uuid="false" table="fuetterungen" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="futtermittel_id" db-name="futtermittel_id" type="long" />
+
+		<column name="beginn" db-name="beginn" type="Date" />
+		<column name="ende" db-name="ende" type="Date" />
+		<column name="menge_kg" db-name="menge_kg" type="long" />
+		<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
+
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+	<entity local-service="true" name="futtermittel" remote-service="false" uuid="false" table="futtermittel" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="name" db-name="name" type="String" />
+		<column name="hersteller_id" db-name="hersteller_id" type="long" />
+		<column name="gebindegroesse" db-name="gebindegroesse" type="String" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+	<entity local-service="true" name="gesundheitszeugnisse" remote-service="false" uuid="false" table="gesundheitszeugnisse" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="seriennummer_lt_form" db-name="seriennummer_lt_form" type="String" />
+		<column name="dokument" db-name="dokument" type="byte[]" />
+		<column name="ausstellungsdatum" db-name="ausstellungsdatum" type="Date" />
+		<column name="dokument_dateityp" db-name="dokument_dateityp" type="String" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="honigernten" remote-service="false" uuid="false" table="honigernten" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="erntedatum" db-name="erntedatum" type="Date" />
+		<column name="erntemenge_kg" db-name="erntemenge_kg" type="int" />
+		<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
+		<column name="tracht_id" db-name="tracht_id" type="long" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+
+	<entity local-service="true" name="trachten" remote-service="false" uuid="false" table="trachten" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
+		
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+	<entity local-service="true" name="voelkerentwicklung" remote-service="false" uuid="false" table="voelkerentwicklung" data-source="extDataSource">
+		<!-- PK fields -->
+		<column name="id" db-name="id" primary="true" type="long" />
+	   	<column name="anzahl_bebrueteter_rahmen" db-name="anzahl_bebrueteter_rahmen" type="float" />
+		<column name="abschaetzung_anzahl_individuen" db-name="abschaetzung_anzahl_individuen" type="long" />
+		<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
+		<column name="datum" db-name="datum" type="Date" />
+		<column name="stockwaage_gewicht_kg" db-name="stockwaage_ewicht_kg" type="float" />
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+	</entity>
+</service-builder>

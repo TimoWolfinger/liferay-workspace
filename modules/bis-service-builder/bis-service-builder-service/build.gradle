@@ -1,0 +1,11 @@
+dependencies {
+	compile project(":modules:bis-service-builder:bis-service-builder-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+}
+
+buildService {
+	apiDir = "../bis-service-builder-api/src/main/java"
+}
+
+group = "de.twolfinger.liferay_bis_service_builder"

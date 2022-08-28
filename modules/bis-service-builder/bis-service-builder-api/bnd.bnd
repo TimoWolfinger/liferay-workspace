@@ -1,0 +1,10 @@
+Bundle-Name: bis-service-builder-api
+Bundle-SymbolicName: de.twolfinger.liferay_bis_service_builder.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	de.twolfinger.liferay_bis_service_builder.exception,\
+	de.twolfinger.liferay_bis_service_builder.model,\
+	de.twolfinger.liferay_bis_service_builder.service,\
+	de.twolfinger.liferay_bis_service_builder.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../bis-service-builder-service/service.xml
