@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.ableger">
+		<field name="id" type="long" />
+		<field name="bezeichnung" type="String" />
+		<field name="datum_ablegerbildung" type="Date" />
+		<field name="muttervolk_id" type="long" />
+		<field name="erfolgreich" type="Boolean" />
+		<field name="abgeschlossen" type="Boolean" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.behandlungen">
+		<field name="id" type="long" />
+		<field name="bienenvolk_id" type="long" />
+		<field name="medikament_id" type="long" />
+		<field name="beginn" type="Date" />
+		<field name="ende" type="Date" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.beutemasse">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.bienenrassen">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.bienenvoelker">
+		<field name="id" type="long" />
+		<field name="bezeichnung" type="String" />
+		<field name="weisel_jahr" type="long" />
+		<field name="bemerkungen" type="String" />
+		<field name="muttervolk" type="long" />
+		<field name="bienenrasse_id" type="long" />
+		<field name="beutemass_id" type="long" />
+		<field name="geo_coordinaten" type="String" />
+		<field name="anschaffung_ableger_jahr" type="int" />
+		<field name="aktiv" type="Boolean" />
+		<field name="aufloesung_tod_jahr" type="int" />
+		<field name="gesundheitszeugnis_id" type="long" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.fuetterungen">
+		<field name="id" type="long" />
+		<field name="futtermittel_id" type="long" />
+		<field name="beginn" type="Date" />
+		<field name="ende" type="Date" />
+		<field name="menge_kg" type="long" />
+		<field name="bienenvolk_id" type="long" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.futtermittel">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+		<field name="hersteller_id" type="long" />
+		<field name="gebindegroesse" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.gesundheitszeugnisse">
+		<field name="id" type="long" />
+		<field name="seriennummer_lt_form" type="String" />
+		<field name="dokument" type="String" />
+		<field name="ausstellungsdatum" type="Date" />
+		<field name="dokument_dateityp" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.hersteller">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.honigernten">
+		<field name="id" type="long" />
+		<field name="erntedatum" type="Date" />
+		<field name="erntemenge_kg" type="int" />
+		<field name="bienenvolk_id" type="long" />
+		<field name="tracht_id" type="long" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.medikamente">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+		<field name="hersteller_id" type="long" />
+		<field name="dosierung" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.trachten">
+		<field name="id" type="long" />
+		<field name="bezeichnung" type="String" />
+	</model>
+	<model name="de.twolfinger.liferay_bis_service_builder.model.voelkerentwicklung">
+		<field name="id" type="long" />
+		<field name="anzahl_bebrueteter_rahmen" type="float" />
+		<field name="abschaetzung_anzahl_individuen" type="long" />
+		<field name="bienenvolk_id" type="long" />
+		<field name="datum" type="Date" />
+		<field name="stockwaage_gewicht_kg" type="float" />
+	</model>
+</model-hints>
