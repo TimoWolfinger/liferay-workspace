@@ -262,4 +262,5 @@ public interface behandlungenLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public behandlungen updatebehandlungen(behandlungen behandlungen);
+
 }

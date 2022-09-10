@@ -349,9 +349,5 @@ public class gesundheitszeugnisseLocalServiceWrapper
 	}
 
 	private gesundheitszeugnisseLocalService _gesundheitszeugnisseLocalService;
-	
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
+
 }

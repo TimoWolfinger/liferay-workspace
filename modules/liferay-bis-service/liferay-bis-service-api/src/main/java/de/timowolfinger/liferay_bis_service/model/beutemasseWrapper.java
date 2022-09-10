@@ -132,8 +132,4 @@ public class beutemasseWrapper
 		return new beutemasseWrapper(beutemasse);
 	}
 
-	@Override
-	public beutemasseWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

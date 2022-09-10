@@ -241,9 +241,4 @@ public class fuetterungenWrapper
 		return new fuetterungenWrapper(fuetterungen);
 	}
 
-	@Override
-	public fuetterungenWrapper cloneWithOriginalValues() {
-		return this;
-	}
-	
 }

@@ -339,8 +339,4 @@ public class bienenrassenLocalServiceWrapper
 
 	private bienenrassenLocalService _bienenrassenLocalService;
 
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
 }

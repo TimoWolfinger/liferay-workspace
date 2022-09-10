@@ -132,8 +132,4 @@ public class trachtenWrapper
 		return new trachtenWrapper(trachten);
 	}
 
-	@Override
-	public trachtenWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

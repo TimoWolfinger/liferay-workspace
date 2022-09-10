@@ -214,8 +214,4 @@ public class behandlungenWrapper
 		return new behandlungenWrapper(behandlungen);
 	}
 
-	@Override
-	public behandlungenWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

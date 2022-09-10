@@ -340,8 +340,4 @@ public class bienenvoelkerLocalServiceWrapper
 
 	private bienenvoelkerLocalService _bienenvoelkerLocalService;
 
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
 }

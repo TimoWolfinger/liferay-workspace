@@ -214,8 +214,4 @@ public class honigerntenWrapper
 		return new honigerntenWrapper(honigernten);
 	}
 
-	@Override
-	public honigerntenWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

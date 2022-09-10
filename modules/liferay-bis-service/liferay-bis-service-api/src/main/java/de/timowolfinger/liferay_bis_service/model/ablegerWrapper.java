@@ -241,8 +241,5 @@ public class ablegerWrapper
 	protected ablegerWrapper wrap(ableger ableger) {
 		return new ablegerWrapper(ableger);
 	}
-	@Override
-	public ablegerWrapper cloneWithOriginalValues() {
-		return this;
-	}
+
 }

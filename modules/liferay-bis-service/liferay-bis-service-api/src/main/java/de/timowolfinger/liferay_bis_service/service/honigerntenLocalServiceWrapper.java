@@ -339,8 +339,4 @@ public class honigerntenLocalServiceWrapper
 
 	private honigerntenLocalService _honigerntenLocalService;
 
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
 }

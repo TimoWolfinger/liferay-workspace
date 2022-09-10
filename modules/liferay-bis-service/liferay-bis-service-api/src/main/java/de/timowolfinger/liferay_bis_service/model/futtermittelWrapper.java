@@ -186,8 +186,4 @@ public class futtermittelWrapper
 		return new futtermittelWrapper(futtermittel);
 	}
 
-	@Override
-	public futtermittelWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

@@ -132,8 +132,4 @@ public class herstellerWrapper
 		return new herstellerWrapper(hersteller);
 	}
 
-	@Override
-	public herstellerWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

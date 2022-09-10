@@ -251,9 +251,4 @@ public class voelkerentwicklungWrapper
 		return new voelkerentwicklungWrapper(voelkerentwicklung);
 	}
 
-	@Override
-	public voelkerentwicklungWrapper cloneWithOriginalValues() {
-		return this;
-	}
-
-}	
+}

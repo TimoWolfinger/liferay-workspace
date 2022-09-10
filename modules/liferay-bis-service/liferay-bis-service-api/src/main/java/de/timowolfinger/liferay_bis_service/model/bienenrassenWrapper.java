@@ -131,8 +131,5 @@ public class bienenrassenWrapper
 	protected bienenrassenWrapper wrap(bienenrassen bienenrassen) {
 		return new bienenrassenWrapper(bienenrassen);
 	}
-	@Override
-	public bienenrassenWrapper cloneWithOriginalValues() {
-		return this;
-	}
+
 }

@@ -683,5 +683,5 @@ public class ablegerModelImpl
 
 	private long _columnBitmask;
 	private ableger _escapedModel;
-	
+
 }

@@ -1,0 +1,10 @@
+Bundle-Name: bis-tes-api
+Bundle-SymbolicName: de.twolfinger.liferay_bis_test.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	de.twolfinger.liferay_bis_test.exception,\
+	de.twolfinger.liferay_bis_test.model,\
+	de.twolfinger.liferay_bis_test.service,\
+	de.twolfinger.liferay_bis_test.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../bis-tes-service/service.xml

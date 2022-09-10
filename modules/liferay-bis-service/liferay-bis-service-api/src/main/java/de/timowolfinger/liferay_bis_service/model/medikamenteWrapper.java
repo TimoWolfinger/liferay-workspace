@@ -186,8 +186,4 @@ public class medikamenteWrapper
 		return new medikamenteWrapper(medikamente);
 	}
 
-	@Override
-	public medikamenteWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

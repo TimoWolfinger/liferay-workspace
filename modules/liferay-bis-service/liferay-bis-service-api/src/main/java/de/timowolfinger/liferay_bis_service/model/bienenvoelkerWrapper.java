@@ -406,8 +406,4 @@ public class bienenvoelkerWrapper
 		return new bienenvoelkerWrapper(bienenvoelker);
 	}
 
-	@Override
-	public bienenvoelkerWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

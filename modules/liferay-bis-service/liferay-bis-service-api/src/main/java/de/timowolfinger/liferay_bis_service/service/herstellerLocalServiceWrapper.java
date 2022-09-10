@@ -332,9 +332,5 @@ public class herstellerLocalServiceWrapper
 	}
 
 	private herstellerLocalService _herstellerLocalService;
-	
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
+
 }

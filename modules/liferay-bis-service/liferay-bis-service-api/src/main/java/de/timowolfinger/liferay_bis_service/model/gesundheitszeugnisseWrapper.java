@@ -219,8 +219,4 @@ public class gesundheitszeugnisseWrapper
 		return new gesundheitszeugnisseWrapper(gesundheitszeugnisse);
 	}
 
-	@Override
-	public gesundheitszeugnisseWrapper cloneWithOriginalValues() {
-		return this;
-	}
 }

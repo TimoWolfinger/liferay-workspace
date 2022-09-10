@@ -339,8 +339,4 @@ public class futtermittelLocalServiceWrapper
 
 	private futtermittelLocalService _futtermittelLocalService;
 
-	@Override 
-	public int dslQueryCount(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-		return dslQuery.as("table").getColumns().size();
-	}
 }
