@@ -23,21 +23,24 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.beutemasse;
 import de.timowolfinger.liferay_bis_service.model.beutemasseModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -91,7 +94,7 @@ public class beutemasseModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -194,34 +197,6 @@ public class beutemasseModelImpl
 		return _attributeSetterBiConsumers;
 	}
 
-	private static Function<InvocationHandler, beutemasse>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			beutemasse.class.getClassLoader(), beutemasse.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<beutemasse> constructor =
-				(Constructor<beutemasse>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
-	}
-
 	private static final Map<String, Function<beutemasse, Object>>
 		_attributeGetterFunctions;
 	private static final Map<String, BiConsumer<beutemasse, Object>>
@@ -293,7 +268,9 @@ public class beutemasseModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -337,6 +314,16 @@ public class beutemasseModelImpl
 		beutemasseImpl.setName(getName());
 
 		beutemasseImpl.resetOriginalValues();
+
+		return beutemasseImpl;
+	}
+
+	@Override
+	public beutemasse cloneWithOriginalValues() {
+		beutemasseImpl beutemasseImpl = new beutemasseImpl();
+
+		beutemasseImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		beutemasseImpl.setName(this.<String>getColumnOriginalValue("name"));
 
 		return beutemasseImpl;
 	}
@@ -437,7 +424,7 @@ public class beutemasseModelImpl
 			getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -448,9 +435,26 @@ public class beutemasseModelImpl
 			Function<beutemasse, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((beutemasse)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply((beutemasse)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -497,7 +501,9 @@ public class beutemasseModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, beutemasse>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					beutemasse.class, ModelWrapper.class);
 
 	}
 

@@ -129,4 +129,7 @@ public interface gesundheitszeugnisseModel
 	 */
 	public void setDokument_dateityp(String dokument_dateityp);
 
+	@Override
+	public gesundheitszeugnisse cloneWithOriginalValues();
+
 }

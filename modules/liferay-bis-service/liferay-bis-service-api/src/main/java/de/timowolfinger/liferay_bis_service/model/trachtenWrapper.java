@@ -62,6 +62,11 @@ public class trachtenWrapper
 		}
 	}
 
+	@Override
+	public trachten cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the bezeichnung of this trachten.
 	 *

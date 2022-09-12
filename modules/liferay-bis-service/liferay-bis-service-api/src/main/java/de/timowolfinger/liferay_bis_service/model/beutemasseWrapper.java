@@ -62,6 +62,11 @@ public class beutemasseWrapper
 		}
 	}
 
+	@Override
+	public beutemasse cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the ID of this beutemasse.
 	 *

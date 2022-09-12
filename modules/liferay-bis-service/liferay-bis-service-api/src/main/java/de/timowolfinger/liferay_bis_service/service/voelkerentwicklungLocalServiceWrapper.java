@@ -27,6 +27,10 @@ public class voelkerentwicklungLocalServiceWrapper
 	implements ServiceWrapper<voelkerentwicklungLocalService>,
 			   voelkerentwicklungLocalService {
 
+	public voelkerentwicklungLocalServiceWrapper() {
+		this(null);
+	}
+
 	public voelkerentwicklungLocalServiceWrapper(
 		voelkerentwicklungLocalService voelkerentwicklungLocalService) {
 
@@ -132,6 +136,13 @@ public class voelkerentwicklungLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _voelkerentwicklungLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _voelkerentwicklungLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

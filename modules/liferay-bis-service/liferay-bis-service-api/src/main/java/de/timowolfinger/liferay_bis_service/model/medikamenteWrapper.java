@@ -76,6 +76,11 @@ public class medikamenteWrapper
 		}
 	}
 
+	@Override
+	public medikamente cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the dosierung of this medikamente.
 	 *

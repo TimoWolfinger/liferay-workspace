@@ -23,15 +23,16 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.behandlungen;
 import de.timowolfinger.liferay_bis_service.model.behandlungenModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
@@ -39,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -97,7 +99,7 @@ public class behandlungenModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -199,34 +201,6 @@ public class behandlungenModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
-	}
-
-	private static Function<InvocationHandler, behandlungen>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			behandlungen.class.getClassLoader(), behandlungen.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<behandlungen> constructor =
-				(Constructor<behandlungen>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
 	}
 
 	private static final Map<String, Function<behandlungen, Object>>
@@ -350,7 +324,9 @@ public class behandlungenModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -397,6 +373,21 @@ public class behandlungenModelImpl
 		behandlungenImpl.setEnde(getEnde());
 
 		behandlungenImpl.resetOriginalValues();
+
+		return behandlungenImpl;
+	}
+
+	@Override
+	public behandlungen cloneWithOriginalValues() {
+		behandlungenImpl behandlungenImpl = new behandlungenImpl();
+
+		behandlungenImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		behandlungenImpl.setBienenvolk_id(
+			this.<Long>getColumnOriginalValue("bienenvolk_id"));
+		behandlungenImpl.setMedikament_id(
+			this.<Long>getColumnOriginalValue("dmedikament_id"));
+		behandlungenImpl.setBeginn(this.<Date>getColumnOriginalValue("beginn"));
+		behandlungenImpl.setEnde(this.<Date>getColumnOriginalValue("ende"));
 
 		return behandlungenImpl;
 	}
@@ -512,7 +503,7 @@ public class behandlungenModelImpl
 			getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -523,9 +514,26 @@ public class behandlungenModelImpl
 			Function<behandlungen, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((behandlungen)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply((behandlungen)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -572,7 +580,9 @@ public class behandlungenModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, behandlungen>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					behandlungen.class, ModelWrapper.class);
 
 	}
 

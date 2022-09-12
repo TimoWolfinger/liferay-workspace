@@ -139,4 +139,7 @@ public interface voelkerentwicklungModel extends BaseModel<voelkerentwicklung> {
 	 */
 	public void setStockwaage_gewicht_kg(float stockwaage_gewicht_kg);
 
+	@Override
+	public voelkerentwicklung cloneWithOriginalValues();
+
 }

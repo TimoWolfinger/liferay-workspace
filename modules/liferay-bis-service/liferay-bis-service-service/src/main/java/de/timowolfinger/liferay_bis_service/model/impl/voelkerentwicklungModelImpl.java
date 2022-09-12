@@ -23,15 +23,16 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.voelkerentwicklung;
 import de.timowolfinger.liferay_bis_service.model.voelkerentwicklungModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
@@ -39,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -102,7 +104,7 @@ public class voelkerentwicklungModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -204,34 +206,6 @@ public class voelkerentwicklungModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
-	}
-
-	private static Function<InvocationHandler, voelkerentwicklung>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			voelkerentwicklung.class.getClassLoader(), voelkerentwicklung.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<voelkerentwicklung> constructor =
-				(Constructor<voelkerentwicklung>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
 	}
 
 	private static final Map<String, Function<voelkerentwicklung, Object>>
@@ -390,7 +364,9 @@ public class voelkerentwicklungModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -442,6 +418,27 @@ public class voelkerentwicklungModelImpl
 			getStockwaage_gewicht_kg());
 
 		voelkerentwicklungImpl.resetOriginalValues();
+
+		return voelkerentwicklungImpl;
+	}
+
+	@Override
+	public voelkerentwicklung cloneWithOriginalValues() {
+		voelkerentwicklungImpl voelkerentwicklungImpl =
+			new voelkerentwicklungImpl();
+
+		voelkerentwicklungImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		voelkerentwicklungImpl.setAnzahl_bebrueteter_rahmen(
+			this.<Float>getColumnOriginalValue("anzahl_bebrueteter_rahmen"));
+		voelkerentwicklungImpl.setAbschaetzung_anzahl_individuen(
+			this.<Long>getColumnOriginalValue(
+				"abschaetzung_anzahl_individuen"));
+		voelkerentwicklungImpl.setBienenvolk_id(
+			this.<Long>getColumnOriginalValue("bienenvolk_id"));
+		voelkerentwicklungImpl.setDatum(
+			this.<Date>getColumnOriginalValue("datum"));
+		voelkerentwicklungImpl.setStockwaage_gewicht_kg(
+			this.<Float>getColumnOriginalValue("stockwaage_ewicht_kg"));
 
 		return voelkerentwicklungImpl;
 	}
@@ -555,7 +552,7 @@ public class voelkerentwicklungModelImpl
 			attributeGetterFunctions = getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -566,9 +563,27 @@ public class voelkerentwicklungModelImpl
 			Function<voelkerentwicklung, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((voelkerentwicklung)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply(
+				(voelkerentwicklung)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -615,7 +630,9 @@ public class voelkerentwicklungModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, voelkerentwicklung>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					voelkerentwicklung.class, ModelWrapper.class);
 
 	}
 

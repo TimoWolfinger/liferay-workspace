@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 public class trachtenLocalServiceWrapper
 	implements ServiceWrapper<trachtenLocalService>, trachtenLocalService {
 
+	public trachtenLocalServiceWrapper() {
+		this(null);
+	}
+
 	public trachtenLocalServiceWrapper(
 		trachtenLocalService trachtenLocalService) {
 
@@ -123,6 +127,13 @@ public class trachtenLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _trachtenLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _trachtenLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

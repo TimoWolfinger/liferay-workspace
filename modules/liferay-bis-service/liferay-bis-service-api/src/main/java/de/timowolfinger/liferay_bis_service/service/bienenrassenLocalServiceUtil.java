@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.bienenrassen;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for bienenrassen. This utility wraps
@@ -48,11 +56,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @param bienenrassen the bienenrassen
 	 * @return the bienenrassen that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-		addbienenrassen(
-			de.timowolfinger.liferay_bis_service.model.bienenrassen
-				bienenrassen) {
-
+	public static bienenrassen addbienenrassen(bienenrassen bienenrassen) {
 		return getService().addbienenrassen(bienenrassen);
 	}
 
@@ -62,18 +66,16 @@ public class bienenrassenLocalServiceUtil {
 	 * @param id the primary key for the new bienenrassen
 	 * @return the new bienenrassen
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-		createbienenrassen(long id) {
-
+	public static bienenrassen createbienenrassen(long id) {
 		return getService().createbienenrassen(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -88,11 +90,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @param bienenrassen the bienenrassen
 	 * @return the bienenrassen that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-		deletebienenrassen(
-			de.timowolfinger.liferay_bis_service.model.bienenrassen
-				bienenrassen) {
-
+	public static bienenrassen deletebienenrassen(bienenrassen bienenrassen) {
 		return getService().deletebienenrassen(bienenrassen);
 	}
 
@@ -107,9 +105,8 @@ public class bienenrassenLocalServiceUtil {
 	 * @return the bienenrassen that was removed
 	 * @throws PortalException if a bienenrassen with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-			deletebienenrassen(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static bienenrassen deletebienenrassen(long id)
+		throws PortalException {
 
 		return getService().deletebienenrassen(id);
 	}
@@ -117,23 +114,22 @@ public class bienenrassenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -143,9 +139,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -161,9 +155,8 @@ public class bienenrassenLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -181,10 +174,9 @@ public class bienenrassenLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -196,9 +188,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -210,15 +200,13 @@ public class bienenrassenLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-		fetchbienenrassen(long id) {
-
+	public static bienenrassen fetchbienenrassen(long id) {
 		return getService().fetchbienenrassen(id);
 	}
 
@@ -235,10 +223,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @return the bienenrassen
 	 * @throws PortalException if a bienenrassen with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-			getbienenrassen(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static bienenrassen getbienenrassen(long id) throws PortalException {
 		return getService().getbienenrassen(id);
 	}
 
@@ -253,10 +238,7 @@ public class bienenrassenLocalServiceUtil {
 	 * @param end the upper bound of the range of bienenrassens (not inclusive)
 	 * @return the range of bienenrassens
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.bienenrassen>
-			getbienenrassens(int start, int end) {
-
+	public static List<bienenrassen> getbienenrassens(int start, int end) {
 		return getService().getbienenrassens(start, end);
 	}
 
@@ -288,9 +270,8 @@ public class bienenrassenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -305,34 +286,14 @@ public class bienenrassenLocalServiceUtil {
 	 * @param bienenrassen the bienenrassen
 	 * @return the bienenrassen that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenrassen
-		updatebienenrassen(
-			de.timowolfinger.liferay_bis_service.model.bienenrassen
-				bienenrassen) {
-
+	public static bienenrassen updatebienenrassen(bienenrassen bienenrassen) {
 		return getService().updatebienenrassen(bienenrassen);
 	}
 
 	public static bienenrassenLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<bienenrassenLocalService, bienenrassenLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(bienenrassenLocalService.class);
-
-		ServiceTracker<bienenrassenLocalService, bienenrassenLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<bienenrassenLocalService, bienenrassenLocalService>(
-						bundle.getBundleContext(),
-						bienenrassenLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile bienenrassenLocalService _service;
 
 }

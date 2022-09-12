@@ -62,6 +62,11 @@ public class herstellerWrapper
 		}
 	}
 
+	@Override
+	public hersteller cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the ID of this hersteller.
 	 *

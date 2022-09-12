@@ -27,6 +27,10 @@ public class fuetterungenLocalServiceWrapper
 	implements fuetterungenLocalService,
 			   ServiceWrapper<fuetterungenLocalService> {
 
+	public fuetterungenLocalServiceWrapper() {
+		this(null);
+	}
+
 	public fuetterungenLocalServiceWrapper(
 		fuetterungenLocalService fuetterungenLocalService) {
 
@@ -128,6 +132,13 @@ public class fuetterungenLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _fuetterungenLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _fuetterungenLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

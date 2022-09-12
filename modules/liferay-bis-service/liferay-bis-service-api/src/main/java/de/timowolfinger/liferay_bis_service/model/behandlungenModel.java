@@ -124,4 +124,7 @@ public interface behandlungenModel extends BaseModel<behandlungen> {
 	 */
 	public void setEnde(Date ende);
 
+	@Override
+	public behandlungen cloneWithOriginalValues();
+
 }

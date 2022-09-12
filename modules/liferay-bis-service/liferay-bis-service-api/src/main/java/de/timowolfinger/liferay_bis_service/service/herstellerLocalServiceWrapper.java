@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 public class herstellerLocalServiceWrapper
 	implements herstellerLocalService, ServiceWrapper<herstellerLocalService> {
 
+	public herstellerLocalServiceWrapper() {
+		this(null);
+	}
+
 	public herstellerLocalServiceWrapper(
 		herstellerLocalService herstellerLocalService) {
 
@@ -124,6 +128,13 @@ public class herstellerLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _herstellerLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _herstellerLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

@@ -84,6 +84,11 @@ public class honigerntenWrapper
 		}
 	}
 
+	@Override
+	public honigernten cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the bienenvolk_id of this honigernten.
 	 *

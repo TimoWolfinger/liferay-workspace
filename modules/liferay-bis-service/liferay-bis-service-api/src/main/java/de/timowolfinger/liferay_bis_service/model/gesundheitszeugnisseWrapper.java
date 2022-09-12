@@ -87,6 +87,11 @@ public class gesundheitszeugnisseWrapper
 		}
 	}
 
+	@Override
+	public gesundheitszeugnisse cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the ausstellungsdatum of this gesundheitszeugnisse.
 	 *

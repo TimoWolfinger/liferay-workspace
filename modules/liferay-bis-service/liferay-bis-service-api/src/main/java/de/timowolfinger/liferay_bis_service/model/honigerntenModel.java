@@ -124,4 +124,7 @@ public interface honigerntenModel extends BaseModel<honigernten> {
 	 */
 	public void setTracht_id(long tracht_id);
 
+	@Override
+	public honigernten cloneWithOriginalValues();
+
 }

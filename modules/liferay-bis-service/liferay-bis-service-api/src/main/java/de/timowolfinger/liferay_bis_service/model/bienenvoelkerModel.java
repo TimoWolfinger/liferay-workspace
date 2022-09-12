@@ -224,4 +224,7 @@ public interface bienenvoelkerModel extends BaseModel<bienenvoelker> {
 	 */
 	public void setGesundheitszeugnis_id(long gesundheitszeugnis_id);
 
+	@Override
+	public bienenvoelker cloneWithOriginalValues();
+
 }

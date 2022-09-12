@@ -27,6 +27,10 @@ public class gesundheitszeugnisseLocalServiceWrapper
 	implements gesundheitszeugnisseLocalService,
 			   ServiceWrapper<gesundheitszeugnisseLocalService> {
 
+	public gesundheitszeugnisseLocalServiceWrapper() {
+		this(null);
+	}
+
 	public gesundheitszeugnisseLocalServiceWrapper(
 		gesundheitszeugnisseLocalService gesundheitszeugnisseLocalService) {
 
@@ -132,6 +136,13 @@ public class gesundheitszeugnisseLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _gesundheitszeugnisseLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _gesundheitszeugnisseLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

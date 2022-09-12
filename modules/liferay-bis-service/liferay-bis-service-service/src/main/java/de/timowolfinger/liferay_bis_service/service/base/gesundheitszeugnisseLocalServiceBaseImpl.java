@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import de.timowolfinger.liferay_bis_service.model.gesundheitszeugnisse;
 import de.timowolfinger.liferay_bis_service.service.gesundheitszeugnisseLocalService;
+import de.timowolfinger.liferay_bis_service.service.gesundheitszeugnisseLocalServiceUtil;
 import de.timowolfinger.liferay_bis_service.service.persistence.ablegerPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.behandlungenPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.beutemassePersistence;
@@ -57,10 +58,13 @@ import de.timowolfinger.liferay_bis_service.service.persistence.voelkerentwicklu
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -82,7 +86,7 @@ public abstract class gesundheitszeugnisseLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>gesundheitszeugnisseLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>de.timowolfinger.liferay_bis_service.service.gesundheitszeugnisseLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>gesundheitszeugnisseLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>gesundheitszeugnisseLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -157,6 +161,13 @@ public abstract class gesundheitszeugnisseLocalServiceBaseImpl
 	@Override
 	public <T> T dslQuery(DSLQuery dslQuery) {
 		return gesundheitszeugnissePersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -394,6 +405,11 @@ public abstract class gesundheitszeugnisseLocalServiceBaseImpl
 		return gesundheitszeugnissePersistence.update(gesundheitszeugnisse);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -406,6 +422,8 @@ public abstract class gesundheitszeugnisseLocalServiceBaseImpl
 	public void setAopProxy(Object aopProxy) {
 		gesundheitszeugnisseLocalService =
 			(gesundheitszeugnisseLocalService)aopProxy;
+
+		_setLocalServiceUtilService(gesundheitszeugnisseLocalService);
 	}
 
 	/**
@@ -448,6 +466,23 @@ public abstract class gesundheitszeugnisseLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		gesundheitszeugnisseLocalService gesundheitszeugnisseLocalService) {
+
+		try {
+			Field field =
+				gesundheitszeugnisseLocalServiceUtil.class.getDeclaredField(
+					"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, gesundheitszeugnisseLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

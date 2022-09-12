@@ -111,4 +111,7 @@ public interface medikamenteModel extends BaseModel<medikamente> {
 	 */
 	public void setDosierung(String dosierung);
 
+	@Override
+	public medikamente cloneWithOriginalValues();
+
 }

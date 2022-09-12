@@ -84,6 +84,11 @@ public class behandlungenWrapper
 		}
 	}
 
+	@Override
+	public behandlungen cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the beginn of this behandlungen.
 	 *

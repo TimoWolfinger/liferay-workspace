@@ -140,4 +140,7 @@ public interface ablegerModel extends BaseModel<ableger> {
 	 */
 	public void setAbgeschlossen(Boolean abgeschlossen);
 
+	@Override
+	public ableger cloneWithOriginalValues();
+
 }

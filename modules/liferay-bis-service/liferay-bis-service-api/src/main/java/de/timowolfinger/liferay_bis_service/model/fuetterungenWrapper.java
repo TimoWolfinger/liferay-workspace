@@ -91,6 +91,11 @@ public class fuetterungenWrapper
 		}
 	}
 
+	@Override
+	public fuetterungen cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the beginn of this fuetterungen.
 	 *

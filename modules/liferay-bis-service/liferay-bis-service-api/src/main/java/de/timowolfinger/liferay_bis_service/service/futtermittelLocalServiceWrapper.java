@@ -27,6 +27,10 @@ public class futtermittelLocalServiceWrapper
 	implements futtermittelLocalService,
 			   ServiceWrapper<futtermittelLocalService> {
 
+	public futtermittelLocalServiceWrapper() {
+		this(null);
+	}
+
 	public futtermittelLocalServiceWrapper(
 		futtermittelLocalService futtermittelLocalService) {
 
@@ -128,6 +132,13 @@ public class futtermittelLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _futtermittelLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _futtermittelLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

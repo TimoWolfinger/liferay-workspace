@@ -16,7 +16,6 @@ package de.timowolfinger.liferay_bis_service.service.persistence.impl;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
-import com.liferay.portal.kernel.dao.orm.ArgumentsResolver;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -26,11 +25,12 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 
 import de.timowolfinger.liferay_bis_service.exception.NoSuchhonigerntenException;
 import de.timowolfinger.liferay_bis_service.model.honigernten;
@@ -38,19 +38,19 @@ import de.timowolfinger.liferay_bis_service.model.honigerntenTable;
 import de.timowolfinger.liferay_bis_service.model.impl.honigerntenImpl;
 import de.timowolfinger.liferay_bis_service.model.impl.honigerntenModelImpl;
 import de.timowolfinger.liferay_bis_service.service.persistence.honigerntenPersistence;
+import de.timowolfinger.liferay_bis_service.service.persistence.honigerntenUtil;
 import de.timowolfinger.liferay_bis_service.service.persistence.impl.constants.bisPersistenceConstants;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.sql.DataSource;
 
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -108,6 +108,8 @@ public class honigerntenPersistenceImpl
 			honigerntenImpl.class, honigernten.getPrimaryKey(), honigernten);
 	}
 
+	private int _valueObjectFinderCacheListThreshold;
+
 	/**
 	 * Caches the honigerntens in the entity cache if it is enabled.
 	 *
@@ -115,6 +117,13 @@ public class honigerntenPersistenceImpl
 	 */
 	@Override
 	public void cacheResult(List<honigernten> honigerntens) {
+		if ((_valueObjectFinderCacheListThreshold == 0) ||
+			((_valueObjectFinderCacheListThreshold > 0) &&
+			 (honigerntens.size() > _valueObjectFinderCacheListThreshold))) {
+
+			return;
+		}
+
 		for (honigernten honigernten : honigerntens) {
 			if (entityCache.getResult(
 					honigerntenImpl.class, honigernten.getPrimaryKey()) ==
@@ -553,12 +562,9 @@ public class honigerntenPersistenceImpl
 	 * Initializes the honigernten persistence.
 	 */
 	@Activate
-	public void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
-
-		_argumentsResolverServiceRegistration = _bundleContext.registerService(
-			ArgumentsResolver.class, new honigerntenModelArgumentsResolver(),
-			new HashMapDictionary<>());
+	public void activate() {
+		_valueObjectFinderCacheListThreshold = GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.VALUE_OBJECT_FINDER_CACHE_LIST_THRESHOLD));
 
 		_finderPathWithPaginationFindAll = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0],
@@ -571,13 +577,31 @@ public class honigerntenPersistenceImpl
 		_finderPathCountAll = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0], new String[0], false);
+
+		_sethonigerntenUtilPersistence(this);
 	}
 
 	@Deactivate
 	public void deactivate() {
-		entityCache.removeCache(honigerntenImpl.class.getName());
+		_sethonigerntenUtilPersistence(null);
 
-		_argumentsResolverServiceRegistration.unregister();
+		entityCache.removeCache(honigerntenImpl.class.getName());
+	}
+
+	private void _sethonigerntenUtilPersistence(
+		honigerntenPersistence honigerntenPersistence) {
+
+		try {
+			Field field = honigerntenUtil.class.getDeclaredField(
+				"_persistence");
+
+			field.setAccessible(true);
+
+			field.set(null, honigerntenPersistence);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
+		}
 	}
 
 	@Override
@@ -606,8 +630,6 @@ public class honigerntenPersistenceImpl
 		super.setSessionFactory(sessionFactory);
 	}
 
-	private BundleContext _bundleContext;
-
 	@Reference
 	protected EntityCache entityCache;
 
@@ -633,93 +655,8 @@ public class honigerntenPersistenceImpl
 		return finderCache;
 	}
 
-	private ServiceRegistration<ArgumentsResolver>
-		_argumentsResolverServiceRegistration;
-
-	private static class honigerntenModelArgumentsResolver
-		implements ArgumentsResolver {
-
-		@Override
-		public Object[] getArguments(
-			FinderPath finderPath, BaseModel<?> baseModel, boolean checkColumn,
-			boolean original) {
-
-			String[] columnNames = finderPath.getColumnNames();
-
-			if ((columnNames == null) || (columnNames.length == 0)) {
-				if (baseModel.isNew()) {
-					return FINDER_ARGS_EMPTY;
-				}
-
-				return null;
-			}
-
-			honigerntenModelImpl honigerntenModelImpl =
-				(honigerntenModelImpl)baseModel;
-
-			long columnBitmask = honigerntenModelImpl.getColumnBitmask();
-
-			if (!checkColumn || (columnBitmask == 0)) {
-				return _getValue(honigerntenModelImpl, columnNames, original);
-			}
-
-			Long finderPathColumnBitmask = _finderPathColumnBitmasksCache.get(
-				finderPath);
-
-			if (finderPathColumnBitmask == null) {
-				finderPathColumnBitmask = 0L;
-
-				for (String columnName : columnNames) {
-					finderPathColumnBitmask |=
-						honigerntenModelImpl.getColumnBitmask(columnName);
-				}
-
-				_finderPathColumnBitmasksCache.put(
-					finderPath, finderPathColumnBitmask);
-			}
-
-			if ((columnBitmask & finderPathColumnBitmask) != 0) {
-				return _getValue(honigerntenModelImpl, columnNames, original);
-			}
-
-			return null;
-		}
-
-		@Override
-		public String getClassName() {
-			return honigerntenImpl.class.getName();
-		}
-
-		@Override
-		public String getTableName() {
-			return honigerntenTable.INSTANCE.getTableName();
-		}
-
-		private Object[] _getValue(
-			honigerntenModelImpl honigerntenModelImpl, String[] columnNames,
-			boolean original) {
-
-			Object[] arguments = new Object[columnNames.length];
-
-			for (int i = 0; i < arguments.length; i++) {
-				String columnName = columnNames[i];
-
-				if (original) {
-					arguments[i] = honigerntenModelImpl.getColumnOriginalValue(
-						columnName);
-				}
-				else {
-					arguments[i] = honigerntenModelImpl.getColumnValue(
-						columnName);
-				}
-			}
-
-			return arguments;
-		}
-
-		private static Map<FinderPath, Long> _finderPathColumnBitmasksCache =
-			new ConcurrentHashMap<>();
-
-	}
+	@Reference
+	private honigerntenModelArgumentsResolver
+		_honigerntenModelArgumentsResolver;
 
 }

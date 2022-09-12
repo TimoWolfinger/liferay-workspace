@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 public class ablegerLocalServiceWrapper
 	implements ablegerLocalService, ServiceWrapper<ablegerLocalService> {
 
+	public ablegerLocalServiceWrapper() {
+		this(null);
+	}
+
 	public ablegerLocalServiceWrapper(ablegerLocalService ablegerLocalService) {
 		_ablegerLocalService = ablegerLocalService;
 	}
@@ -121,6 +125,13 @@ public class ablegerLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _ablegerLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _ablegerLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

@@ -27,6 +27,10 @@ public class bienenrassenLocalServiceWrapper
 	implements bienenrassenLocalService,
 			   ServiceWrapper<bienenrassenLocalService> {
 
+	public bienenrassenLocalServiceWrapper() {
+		this(null);
+	}
+
 	public bienenrassenLocalServiceWrapper(
 		bienenrassenLocalService bienenrassenLocalService) {
 
@@ -128,6 +132,13 @@ public class bienenrassenLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _bienenrassenLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _bienenrassenLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

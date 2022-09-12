@@ -82,4 +82,7 @@ public interface herstellerModel extends BaseModel<hersteller> {
 	 */
 	public void setName(String name);
 
+	@Override
+	public hersteller cloneWithOriginalValues();
+
 }

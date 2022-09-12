@@ -27,6 +27,10 @@ public class bienenvoelkerLocalServiceWrapper
 	implements bienenvoelkerLocalService,
 			   ServiceWrapper<bienenvoelkerLocalService> {
 
+	public bienenvoelkerLocalServiceWrapper() {
+		this(null);
+	}
+
 	public bienenvoelkerLocalServiceWrapper(
 		bienenvoelkerLocalService bienenvoelkerLocalService) {
 
@@ -128,6 +132,13 @@ public class bienenvoelkerLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _bienenvoelkerLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _bienenvoelkerLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

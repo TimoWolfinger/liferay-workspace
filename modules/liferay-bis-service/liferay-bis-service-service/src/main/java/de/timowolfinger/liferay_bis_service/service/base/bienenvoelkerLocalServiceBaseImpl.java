@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import de.timowolfinger.liferay_bis_service.model.bienenvoelker;
 import de.timowolfinger.liferay_bis_service.service.bienenvoelkerLocalService;
+import de.timowolfinger.liferay_bis_service.service.bienenvoelkerLocalServiceUtil;
 import de.timowolfinger.liferay_bis_service.service.persistence.ablegerPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.behandlungenPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.beutemassePersistence;
@@ -57,10 +58,13 @@ import de.timowolfinger.liferay_bis_service.service.persistence.voelkerentwicklu
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -81,7 +85,7 @@ public abstract class bienenvoelkerLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>bienenvoelkerLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>de.timowolfinger.liferay_bis_service.service.bienenvoelkerLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>bienenvoelkerLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>bienenvoelkerLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -150,6 +154,13 @@ public abstract class bienenvoelkerLocalServiceBaseImpl
 	@Override
 	public <T> T dslQuery(DSLQuery dslQuery) {
 		return bienenvoelkerPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -376,6 +387,11 @@ public abstract class bienenvoelkerLocalServiceBaseImpl
 		return bienenvoelkerPersistence.update(bienenvoelker);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -387,6 +403,8 @@ public abstract class bienenvoelkerLocalServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		bienenvoelkerLocalService = (bienenvoelkerLocalService)aopProxy;
+
+		_setLocalServiceUtilService(bienenvoelkerLocalService);
 	}
 
 	/**
@@ -428,6 +446,22 @@ public abstract class bienenvoelkerLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		bienenvoelkerLocalService bienenvoelkerLocalService) {
+
+		try {
+			Field field = bienenvoelkerLocalServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, bienenvoelkerLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

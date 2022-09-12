@@ -138,4 +138,7 @@ public interface fuetterungenModel extends BaseModel<fuetterungen> {
 	 */
 	public void setBienenvolk_id(long bienenvolk_id);
 
+	@Override
+	public fuetterungen cloneWithOriginalValues();
+
 }

@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.fuetterungen;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for fuetterungen. This utility wraps
@@ -48,11 +56,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @param fuetterungen the fuetterungen
 	 * @return the fuetterungen that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-		addfuetterungen(
-			de.timowolfinger.liferay_bis_service.model.fuetterungen
-				fuetterungen) {
-
+	public static fuetterungen addfuetterungen(fuetterungen fuetterungen) {
 		return getService().addfuetterungen(fuetterungen);
 	}
 
@@ -62,18 +66,16 @@ public class fuetterungenLocalServiceUtil {
 	 * @param id the primary key for the new fuetterungen
 	 * @return the new fuetterungen
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-		createfuetterungen(long id) {
-
+	public static fuetterungen createfuetterungen(long id) {
 		return getService().createfuetterungen(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -88,11 +90,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @param fuetterungen the fuetterungen
 	 * @return the fuetterungen that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-		deletefuetterungen(
-			de.timowolfinger.liferay_bis_service.model.fuetterungen
-				fuetterungen) {
-
+	public static fuetterungen deletefuetterungen(fuetterungen fuetterungen) {
 		return getService().deletefuetterungen(fuetterungen);
 	}
 
@@ -107,9 +105,8 @@ public class fuetterungenLocalServiceUtil {
 	 * @return the fuetterungen that was removed
 	 * @throws PortalException if a fuetterungen with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-			deletefuetterungen(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static fuetterungen deletefuetterungen(long id)
+		throws PortalException {
 
 		return getService().deletefuetterungen(id);
 	}
@@ -117,23 +114,22 @@ public class fuetterungenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -143,9 +139,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -161,9 +155,8 @@ public class fuetterungenLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -181,10 +174,9 @@ public class fuetterungenLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -196,9 +188,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -210,15 +200,13 @@ public class fuetterungenLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-		fetchfuetterungen(long id) {
-
+	public static fuetterungen fetchfuetterungen(long id) {
 		return getService().fetchfuetterungen(id);
 	}
 
@@ -235,10 +223,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @return the fuetterungen
 	 * @throws PortalException if a fuetterungen with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-			getfuetterungen(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static fuetterungen getfuetterungen(long id) throws PortalException {
 		return getService().getfuetterungen(id);
 	}
 
@@ -253,10 +238,7 @@ public class fuetterungenLocalServiceUtil {
 	 * @param end the upper bound of the range of fuetterungens (not inclusive)
 	 * @return the range of fuetterungens
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.fuetterungen>
-			getfuetterungens(int start, int end) {
-
+	public static List<fuetterungen> getfuetterungens(int start, int end) {
 		return getService().getfuetterungens(start, end);
 	}
 
@@ -288,9 +270,8 @@ public class fuetterungenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -305,34 +286,14 @@ public class fuetterungenLocalServiceUtil {
 	 * @param fuetterungen the fuetterungen
 	 * @return the fuetterungen that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.fuetterungen
-		updatefuetterungen(
-			de.timowolfinger.liferay_bis_service.model.fuetterungen
-				fuetterungen) {
-
+	public static fuetterungen updatefuetterungen(fuetterungen fuetterungen) {
 		return getService().updatefuetterungen(fuetterungen);
 	}
 
 	public static fuetterungenLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<fuetterungenLocalService, fuetterungenLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(fuetterungenLocalService.class);
-
-		ServiceTracker<fuetterungenLocalService, fuetterungenLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<fuetterungenLocalService, fuetterungenLocalService>(
-						bundle.getBundleContext(),
-						fuetterungenLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile fuetterungenLocalService _service;
 
 }

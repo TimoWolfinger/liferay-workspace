@@ -76,6 +76,11 @@ public class futtermittelWrapper
 		}
 	}
 
+	@Override
+	public futtermittel cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the gebindegroesse of this futtermittel.
 	 *

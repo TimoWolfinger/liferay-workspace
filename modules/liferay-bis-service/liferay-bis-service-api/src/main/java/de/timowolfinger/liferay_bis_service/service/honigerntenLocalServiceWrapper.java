@@ -27,6 +27,10 @@ public class honigerntenLocalServiceWrapper
 	implements honigerntenLocalService,
 			   ServiceWrapper<honigerntenLocalService> {
 
+	public honigerntenLocalServiceWrapper() {
+		this(null);
+	}
+
 	public honigerntenLocalServiceWrapper(
 		honigerntenLocalService honigerntenLocalService) {
 
@@ -128,6 +132,13 @@ public class honigerntenLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _honigerntenLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _honigerntenLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

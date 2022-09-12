@@ -27,6 +27,10 @@ public class behandlungenLocalServiceWrapper
 	implements behandlungenLocalService,
 			   ServiceWrapper<behandlungenLocalService> {
 
+	public behandlungenLocalServiceWrapper() {
+		this(null);
+	}
+
 	public behandlungenLocalServiceWrapper(
 		behandlungenLocalService behandlungenLocalService) {
 
@@ -128,6 +132,13 @@ public class behandlungenLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _behandlungenLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _behandlungenLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

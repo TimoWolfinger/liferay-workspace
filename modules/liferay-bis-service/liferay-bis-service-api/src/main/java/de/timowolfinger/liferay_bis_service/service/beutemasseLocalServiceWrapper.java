@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 public class beutemasseLocalServiceWrapper
 	implements beutemasseLocalService, ServiceWrapper<beutemasseLocalService> {
 
+	public beutemasseLocalServiceWrapper() {
+		this(null);
+	}
+
 	public beutemasseLocalServiceWrapper(
 		beutemasseLocalService beutemasseLocalService) {
 
@@ -124,6 +128,13 @@ public class beutemasseLocalServiceWrapper
 	@Override
 	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
 		return _beutemasseLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(
+		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+
+		return _beutemasseLocalService.dslQueryCount(dslQuery);
 	}
 
 	@Override

@@ -23,21 +23,24 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.bienenvoelker;
 import de.timowolfinger.liferay_bis_service.model.bienenvoelkerModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -107,7 +110,7 @@ public class bienenvoelkerModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -209,34 +212,6 @@ public class bienenvoelkerModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
-	}
-
-	private static Function<InvocationHandler, bienenvoelker>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			bienenvoelker.class.getClassLoader(), bienenvoelker.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<bienenvoelker> constructor =
-				(Constructor<bienenvoelker>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
 	}
 
 	private static final Map<String, Function<bienenvoelker, Object>>
@@ -516,7 +491,9 @@ public class bienenvoelkerModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -571,6 +548,37 @@ public class bienenvoelkerModelImpl
 		bienenvoelkerImpl.setGesundheitszeugnis_id(getGesundheitszeugnis_id());
 
 		bienenvoelkerImpl.resetOriginalValues();
+
+		return bienenvoelkerImpl;
+	}
+
+	@Override
+	public bienenvoelker cloneWithOriginalValues() {
+		bienenvoelkerImpl bienenvoelkerImpl = new bienenvoelkerImpl();
+
+		bienenvoelkerImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		bienenvoelkerImpl.setBezeichnung(
+			this.<String>getColumnOriginalValue("bezeichnung"));
+		bienenvoelkerImpl.setWeisel_jahr(
+			this.<Long>getColumnOriginalValue("weisel_jahr"));
+		bienenvoelkerImpl.setBemerkungen(
+			this.<String>getColumnOriginalValue("bemerkungen"));
+		bienenvoelkerImpl.setMuttervolk(
+			this.<Long>getColumnOriginalValue("muttervolk"));
+		bienenvoelkerImpl.setBienenrasse_id(
+			this.<Long>getColumnOriginalValue("bienenrasse_id"));
+		bienenvoelkerImpl.setBeutemass_id(
+			this.<Long>getColumnOriginalValue("beutemass_id"));
+		bienenvoelkerImpl.setGeo_coordinaten(
+			this.<String>getColumnOriginalValue("geo_coordinaten"));
+		bienenvoelkerImpl.setAnschaffung_ableger_jahr(
+			this.<Integer>getColumnOriginalValue("anschaffung_ableger_jahr"));
+		bienenvoelkerImpl.setAktiv(
+			this.<Boolean>getColumnOriginalValue("aktiv"));
+		bienenvoelkerImpl.setAufloesung_tod_jahr(
+			this.<Integer>getColumnOriginalValue("aufloesung_tod_jahr"));
+		bienenvoelkerImpl.setGesundheitszeugnis_id(
+			this.<Long>getColumnOriginalValue("gesundheitszeugnis_id"));
 
 		return bienenvoelkerImpl;
 	}
@@ -710,7 +718,7 @@ public class bienenvoelkerModelImpl
 			getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -721,9 +729,26 @@ public class bienenvoelkerModelImpl
 			Function<bienenvoelker, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((bienenvoelker)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply((bienenvoelker)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -770,7 +795,9 @@ public class bienenvoelkerModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, bienenvoelker>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					bienenvoelker.class, ModelWrapper.class);
 
 	}
 

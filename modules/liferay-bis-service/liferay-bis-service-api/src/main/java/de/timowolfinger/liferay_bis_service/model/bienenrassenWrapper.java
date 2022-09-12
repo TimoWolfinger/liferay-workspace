@@ -62,6 +62,11 @@ public class bienenrassenWrapper
 		}
 	}
 
+	@Override
+	public bienenrassen cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the ID of this bienenrassen.
 	 *

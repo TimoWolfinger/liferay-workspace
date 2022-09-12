@@ -9,7 +9,3 @@ buildService {
 }
 
 group = "de.timowolfinger.liferay_bis_service"
-
-plugins {
-	
-}

@@ -82,4 +82,7 @@ public interface bienenrassenModel extends BaseModel<bienenrassen> {
 	 */
 	public void setName(String name);
 
+	@Override
+	public bienenrassen cloneWithOriginalValues();
+
 }

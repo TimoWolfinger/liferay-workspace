@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.hersteller;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for hersteller. This utility wraps
@@ -48,10 +56,7 @@ public class herstellerLocalServiceUtil {
 	 * @param hersteller the hersteller
 	 * @return the hersteller that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-		addhersteller(
-			de.timowolfinger.liferay_bis_service.model.hersteller hersteller) {
-
+	public static hersteller addhersteller(hersteller hersteller) {
 		return getService().addhersteller(hersteller);
 	}
 
@@ -61,18 +66,16 @@ public class herstellerLocalServiceUtil {
 	 * @param id the primary key for the new hersteller
 	 * @return the new hersteller
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-		createhersteller(long id) {
-
+	public static hersteller createhersteller(long id) {
 		return getService().createhersteller(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -87,10 +90,7 @@ public class herstellerLocalServiceUtil {
 	 * @param hersteller the hersteller
 	 * @return the hersteller that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-		deletehersteller(
-			de.timowolfinger.liferay_bis_service.model.hersteller hersteller) {
-
+	public static hersteller deletehersteller(hersteller hersteller) {
 		return getService().deletehersteller(hersteller);
 	}
 
@@ -105,33 +105,29 @@ public class herstellerLocalServiceUtil {
 	 * @return the hersteller that was removed
 	 * @throws PortalException if a hersteller with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-			deletehersteller(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static hersteller deletehersteller(long id) throws PortalException {
 		return getService().deletehersteller(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -141,9 +137,7 @@ public class herstellerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -159,9 +153,8 @@ public class herstellerLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -179,10 +172,9 @@ public class herstellerLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -194,9 +186,7 @@ public class herstellerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -208,15 +198,13 @@ public class herstellerLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-		fetchhersteller(long id) {
-
+	public static hersteller fetchhersteller(long id) {
 		return getService().fetchhersteller(id);
 	}
 
@@ -233,10 +221,7 @@ public class herstellerLocalServiceUtil {
 	 * @return the hersteller
 	 * @throws PortalException if a hersteller with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-			gethersteller(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static hersteller gethersteller(long id) throws PortalException {
 		return getService().gethersteller(id);
 	}
 
@@ -251,10 +236,7 @@ public class herstellerLocalServiceUtil {
 	 * @param end the upper bound of the range of herstellers (not inclusive)
 	 * @return the range of herstellers
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.hersteller> getherstellers(
-			int start, int end) {
-
+	public static List<hersteller> getherstellers(int start, int end) {
 		return getService().getherstellers(start, end);
 	}
 
@@ -286,9 +268,8 @@ public class herstellerLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -303,33 +284,14 @@ public class herstellerLocalServiceUtil {
 	 * @param hersteller the hersteller
 	 * @return the hersteller that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.hersteller
-		updatehersteller(
-			de.timowolfinger.liferay_bis_service.model.hersteller hersteller) {
-
+	public static hersteller updatehersteller(hersteller hersteller) {
 		return getService().updatehersteller(hersteller);
 	}
 
 	public static herstellerLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<herstellerLocalService, herstellerLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(herstellerLocalService.class);
-
-		ServiceTracker<herstellerLocalService, herstellerLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<herstellerLocalService, herstellerLocalService>(
-						bundle.getBundleContext(), herstellerLocalService.class,
-						null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile herstellerLocalService _service;
 
 }

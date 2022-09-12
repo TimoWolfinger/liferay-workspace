@@ -97,6 +97,11 @@ public class voelkerentwicklungWrapper
 		}
 	}
 
+	@Override
+	public voelkerentwicklung cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the abschaetzung_anzahl_individuen of this voelkerentwicklung.
 	 *

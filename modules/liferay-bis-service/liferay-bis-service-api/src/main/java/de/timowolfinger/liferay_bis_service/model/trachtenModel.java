@@ -82,4 +82,7 @@ public interface trachtenModel extends BaseModel<trachten> {
 	 */
 	public void setBezeichnung(String bezeichnung);
 
+	@Override
+	public trachten cloneWithOriginalValues();
+
 }

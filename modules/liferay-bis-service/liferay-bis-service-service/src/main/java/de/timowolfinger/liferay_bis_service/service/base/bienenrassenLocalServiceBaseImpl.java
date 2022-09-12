@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import de.timowolfinger.liferay_bis_service.model.bienenrassen;
 import de.timowolfinger.liferay_bis_service.service.bienenrassenLocalService;
+import de.timowolfinger.liferay_bis_service.service.bienenrassenLocalServiceUtil;
 import de.timowolfinger.liferay_bis_service.service.persistence.ablegerPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.behandlungenPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.beutemassePersistence;
@@ -57,10 +58,13 @@ import de.timowolfinger.liferay_bis_service.service.persistence.voelkerentwicklu
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -81,7 +85,7 @@ public abstract class bienenrassenLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>bienenrassenLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>de.timowolfinger.liferay_bis_service.service.bienenrassenLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>bienenrassenLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>bienenrassenLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -150,6 +154,13 @@ public abstract class bienenrassenLocalServiceBaseImpl
 	@Override
 	public <T> T dslQuery(DSLQuery dslQuery) {
 		return bienenrassenPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -376,6 +387,11 @@ public abstract class bienenrassenLocalServiceBaseImpl
 		return bienenrassenPersistence.update(bienenrassen);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -387,6 +403,8 @@ public abstract class bienenrassenLocalServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		bienenrassenLocalService = (bienenrassenLocalService)aopProxy;
+
+		_setLocalServiceUtilService(bienenrassenLocalService);
 	}
 
 	/**
@@ -428,6 +446,22 @@ public abstract class bienenrassenLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		bienenrassenLocalService bienenrassenLocalService) {
+
+		try {
+			Field field = bienenrassenLocalServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, bienenrassenLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

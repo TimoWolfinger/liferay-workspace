@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.bienenvoelker;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for bienenvoelker. This utility wraps
@@ -48,11 +56,7 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param bienenvoelker the bienenvoelker
 	 * @return the bienenvoelker that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-		addbienenvoelker(
-			de.timowolfinger.liferay_bis_service.model.bienenvoelker
-				bienenvoelker) {
-
+	public static bienenvoelker addbienenvoelker(bienenvoelker bienenvoelker) {
 		return getService().addbienenvoelker(bienenvoelker);
 	}
 
@@ -62,18 +66,16 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param id the primary key for the new bienenvoelker
 	 * @return the new bienenvoelker
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-		createbienenvoelker(long id) {
-
+	public static bienenvoelker createbienenvoelker(long id) {
 		return getService().createbienenvoelker(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -88,10 +90,8 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param bienenvoelker the bienenvoelker
 	 * @return the bienenvoelker that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-		deletebienenvoelker(
-			de.timowolfinger.liferay_bis_service.model.bienenvoelker
-				bienenvoelker) {
+	public static bienenvoelker deletebienenvoelker(
+		bienenvoelker bienenvoelker) {
 
 		return getService().deletebienenvoelker(bienenvoelker);
 	}
@@ -107,9 +107,8 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @return the bienenvoelker that was removed
 	 * @throws PortalException if a bienenvoelker with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-			deletebienenvoelker(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static bienenvoelker deletebienenvoelker(long id)
+		throws PortalException {
 
 		return getService().deletebienenvoelker(id);
 	}
@@ -117,23 +116,22 @@ public class bienenvoelkerLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -143,9 +141,7 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -161,9 +157,8 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -181,10 +176,9 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -196,9 +190,7 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -210,15 +202,13 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-		fetchbienenvoelker(long id) {
-
+	public static bienenvoelker fetchbienenvoelker(long id) {
 		return getService().fetchbienenvoelker(id);
 	}
 
@@ -235,9 +225,8 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @return the bienenvoelker
 	 * @throws PortalException if a bienenvoelker with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-			getbienenvoelker(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static bienenvoelker getbienenvoelker(long id)
+		throws PortalException {
 
 		return getService().getbienenvoelker(id);
 	}
@@ -253,10 +242,7 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param end the upper bound of the range of bienenvoelkers (not inclusive)
 	 * @return the range of bienenvoelkers
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.bienenvoelker>
-			getbienenvoelkers(int start, int end) {
-
+	public static List<bienenvoelker> getbienenvoelkers(int start, int end) {
 		return getService().getbienenvoelkers(start, end);
 	}
 
@@ -288,9 +274,8 @@ public class bienenvoelkerLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -305,35 +290,16 @@ public class bienenvoelkerLocalServiceUtil {
 	 * @param bienenvoelker the bienenvoelker
 	 * @return the bienenvoelker that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.bienenvoelker
-		updatebienenvoelker(
-			de.timowolfinger.liferay_bis_service.model.bienenvoelker
-				bienenvoelker) {
+	public static bienenvoelker updatebienenvoelker(
+		bienenvoelker bienenvoelker) {
 
 		return getService().updatebienenvoelker(bienenvoelker);
 	}
 
 	public static bienenvoelkerLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<bienenvoelkerLocalService, bienenvoelkerLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(
-			bienenvoelkerLocalService.class);
-
-		ServiceTracker<bienenvoelkerLocalService, bienenvoelkerLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<bienenvoelkerLocalService, bienenvoelkerLocalService>(
-						bundle.getBundleContext(),
-						bienenvoelkerLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile bienenvoelkerLocalService _service;
 
 }

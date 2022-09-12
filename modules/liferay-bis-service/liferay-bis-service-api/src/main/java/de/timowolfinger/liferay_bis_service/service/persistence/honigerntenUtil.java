@@ -26,10 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
-
 /**
  * The persistence utility for the honigernten service. This utility wraps <code>de.timowolfinger.liferay_bis_service.service.persistence.impl.honigerntenPersistenceImpl</code> and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
@@ -274,25 +270,9 @@ public class honigerntenUtil {
 	}
 
 	public static honigerntenPersistence getPersistence() {
-		return _serviceTracker.getService();
+		return _persistence;
 	}
 
-	private static ServiceTracker
-		<honigerntenPersistence, honigerntenPersistence> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(honigerntenPersistence.class);
-
-		ServiceTracker<honigerntenPersistence, honigerntenPersistence>
-			serviceTracker =
-				new ServiceTracker
-					<honigerntenPersistence, honigerntenPersistence>(
-						bundle.getBundleContext(), honigerntenPersistence.class,
-						null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile honigerntenPersistence _persistence;
 
 }

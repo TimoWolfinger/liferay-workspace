@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.beutemasse;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for beutemasse. This utility wraps
@@ -48,10 +56,7 @@ public class beutemasseLocalServiceUtil {
 	 * @param beutemasse the beutemasse
 	 * @return the beutemasse that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-		addbeutemasse(
-			de.timowolfinger.liferay_bis_service.model.beutemasse beutemasse) {
-
+	public static beutemasse addbeutemasse(beutemasse beutemasse) {
 		return getService().addbeutemasse(beutemasse);
 	}
 
@@ -61,18 +66,16 @@ public class beutemasseLocalServiceUtil {
 	 * @param id the primary key for the new beutemasse
 	 * @return the new beutemasse
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-		createbeutemasse(long id) {
-
+	public static beutemasse createbeutemasse(long id) {
 		return getService().createbeutemasse(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -87,10 +90,7 @@ public class beutemasseLocalServiceUtil {
 	 * @param beutemasse the beutemasse
 	 * @return the beutemasse that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-		deletebeutemasse(
-			de.timowolfinger.liferay_bis_service.model.beutemasse beutemasse) {
-
+	public static beutemasse deletebeutemasse(beutemasse beutemasse) {
 		return getService().deletebeutemasse(beutemasse);
 	}
 
@@ -105,33 +105,29 @@ public class beutemasseLocalServiceUtil {
 	 * @return the beutemasse that was removed
 	 * @throws PortalException if a beutemasse with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-			deletebeutemasse(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static beutemasse deletebeutemasse(long id) throws PortalException {
 		return getService().deletebeutemasse(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -141,9 +137,7 @@ public class beutemasseLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -159,9 +153,8 @@ public class beutemasseLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -179,10 +172,9 @@ public class beutemasseLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -194,9 +186,7 @@ public class beutemasseLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -208,15 +198,13 @@ public class beutemasseLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-		fetchbeutemasse(long id) {
-
+	public static beutemasse fetchbeutemasse(long id) {
 		return getService().fetchbeutemasse(id);
 	}
 
@@ -233,10 +221,7 @@ public class beutemasseLocalServiceUtil {
 	 * @return the beutemasse
 	 * @throws PortalException if a beutemasse with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-			getbeutemasse(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static beutemasse getbeutemasse(long id) throws PortalException {
 		return getService().getbeutemasse(id);
 	}
 
@@ -251,10 +236,7 @@ public class beutemasseLocalServiceUtil {
 	 * @param end the upper bound of the range of beutemasses (not inclusive)
 	 * @return the range of beutemasses
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.beutemasse> getbeutemasses(
-			int start, int end) {
-
+	public static List<beutemasse> getbeutemasses(int start, int end) {
 		return getService().getbeutemasses(start, end);
 	}
 
@@ -286,9 +268,8 @@ public class beutemasseLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -303,33 +284,14 @@ public class beutemasseLocalServiceUtil {
 	 * @param beutemasse the beutemasse
 	 * @return the beutemasse that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.beutemasse
-		updatebeutemasse(
-			de.timowolfinger.liferay_bis_service.model.beutemasse beutemasse) {
-
+	public static beutemasse updatebeutemasse(beutemasse beutemasse) {
 		return getService().updatebeutemasse(beutemasse);
 	}
 
 	public static beutemasseLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<beutemasseLocalService, beutemasseLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(beutemasseLocalService.class);
-
-		ServiceTracker<beutemasseLocalService, beutemasseLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<beutemasseLocalService, beutemasseLocalService>(
-						bundle.getBundleContext(), beutemasseLocalService.class,
-						null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile beutemasseLocalService _service;
 
 }

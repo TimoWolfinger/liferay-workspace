@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import de.timowolfinger.liferay_bis_service.model.hersteller;
 import de.timowolfinger.liferay_bis_service.service.herstellerLocalService;
+import de.timowolfinger.liferay_bis_service.service.herstellerLocalServiceUtil;
 import de.timowolfinger.liferay_bis_service.service.persistence.ablegerPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.behandlungenPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.beutemassePersistence;
@@ -57,10 +58,13 @@ import de.timowolfinger.liferay_bis_service.service.persistence.voelkerentwicklu
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -81,7 +85,7 @@ public abstract class herstellerLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>herstellerLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>de.timowolfinger.liferay_bis_service.service.herstellerLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>herstellerLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>herstellerLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -150,6 +154,13 @@ public abstract class herstellerLocalServiceBaseImpl
 	@Override
 	public <T> T dslQuery(DSLQuery dslQuery) {
 		return herstellerPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -375,6 +386,11 @@ public abstract class herstellerLocalServiceBaseImpl
 		return herstellerPersistence.update(hersteller);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -386,6 +402,8 @@ public abstract class herstellerLocalServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		herstellerLocalService = (herstellerLocalService)aopProxy;
+
+		_setLocalServiceUtilService(herstellerLocalService);
 	}
 
 	/**
@@ -427,6 +445,22 @@ public abstract class herstellerLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		herstellerLocalService herstellerLocalService) {
+
+		try {
+			Field field = herstellerLocalServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, herstellerLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

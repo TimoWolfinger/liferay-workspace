@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.honigernten;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for honigernten. This utility wraps
@@ -48,11 +56,7 @@ public class honigerntenLocalServiceUtil {
 	 * @param honigernten the honigernten
 	 * @return the honigernten that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-		addhonigernten(
-			de.timowolfinger.liferay_bis_service.model.honigernten
-				honigernten) {
-
+	public static honigernten addhonigernten(honigernten honigernten) {
 		return getService().addhonigernten(honigernten);
 	}
 
@@ -62,18 +66,16 @@ public class honigerntenLocalServiceUtil {
 	 * @param id the primary key for the new honigernten
 	 * @return the new honigernten
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-		createhonigernten(long id) {
-
+	public static honigernten createhonigernten(long id) {
 		return getService().createhonigernten(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -88,11 +90,7 @@ public class honigerntenLocalServiceUtil {
 	 * @param honigernten the honigernten
 	 * @return the honigernten that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-		deletehonigernten(
-			de.timowolfinger.liferay_bis_service.model.honigernten
-				honigernten) {
-
+	public static honigernten deletehonigernten(honigernten honigernten) {
 		return getService().deletehonigernten(honigernten);
 	}
 
@@ -107,9 +105,8 @@ public class honigerntenLocalServiceUtil {
 	 * @return the honigernten that was removed
 	 * @throws PortalException if a honigernten with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-			deletehonigernten(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static honigernten deletehonigernten(long id)
+		throws PortalException {
 
 		return getService().deletehonigernten(id);
 	}
@@ -117,23 +114,22 @@ public class honigerntenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -143,9 +139,7 @@ public class honigerntenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -161,9 +155,8 @@ public class honigerntenLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -181,10 +174,9 @@ public class honigerntenLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -196,9 +188,7 @@ public class honigerntenLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -210,15 +200,13 @@ public class honigerntenLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-		fetchhonigernten(long id) {
-
+	public static honigernten fetchhonigernten(long id) {
 		return getService().fetchhonigernten(id);
 	}
 
@@ -235,10 +223,7 @@ public class honigerntenLocalServiceUtil {
 	 * @return the honigernten
 	 * @throws PortalException if a honigernten with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-			gethonigernten(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static honigernten gethonigernten(long id) throws PortalException {
 		return getService().gethonigernten(id);
 	}
 
@@ -253,10 +238,7 @@ public class honigerntenLocalServiceUtil {
 	 * @param end the upper bound of the range of honigerntens (not inclusive)
 	 * @return the range of honigerntens
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.honigernten>
-			gethonigerntens(int start, int end) {
-
+	public static List<honigernten> gethonigerntens(int start, int end) {
 		return getService().gethonigerntens(start, end);
 	}
 
@@ -288,9 +270,8 @@ public class honigerntenLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -305,34 +286,14 @@ public class honigerntenLocalServiceUtil {
 	 * @param honigernten the honigernten
 	 * @return the honigernten that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.honigernten
-		updatehonigernten(
-			de.timowolfinger.liferay_bis_service.model.honigernten
-				honigernten) {
-
+	public static honigernten updatehonigernten(honigernten honigernten) {
 		return getService().updatehonigernten(honigernten);
 	}
 
 	public static honigerntenLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<honigerntenLocalService, honigerntenLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(honigerntenLocalService.class);
-
-		ServiceTracker<honigerntenLocalService, honigerntenLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<honigerntenLocalService, honigerntenLocalService>(
-						bundle.getBundleContext(),
-						honigerntenLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile honigerntenLocalService _service;
 
 }

@@ -23,15 +23,16 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.fuetterungen;
 import de.timowolfinger.liferay_bis_service.model.fuetterungenModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
@@ -39,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -98,7 +100,7 @@ public class fuetterungenModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -200,34 +202,6 @@ public class fuetterungenModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
-	}
-
-	private static Function<InvocationHandler, fuetterungen>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			fuetterungen.class.getClassLoader(), fuetterungen.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<fuetterungen> constructor =
-				(Constructor<fuetterungen>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
 	}
 
 	private static final Map<String, Function<fuetterungen, Object>>
@@ -369,7 +343,9 @@ public class fuetterungenModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -417,6 +393,23 @@ public class fuetterungenModelImpl
 		fuetterungenImpl.setBienenvolk_id(getBienenvolk_id());
 
 		fuetterungenImpl.resetOriginalValues();
+
+		return fuetterungenImpl;
+	}
+
+	@Override
+	public fuetterungen cloneWithOriginalValues() {
+		fuetterungenImpl fuetterungenImpl = new fuetterungenImpl();
+
+		fuetterungenImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		fuetterungenImpl.setFuttermittel_id(
+			this.<Long>getColumnOriginalValue("futtermittel_id"));
+		fuetterungenImpl.setBeginn(this.<Date>getColumnOriginalValue("beginn"));
+		fuetterungenImpl.setEnde(this.<Date>getColumnOriginalValue("ende"));
+		fuetterungenImpl.setMenge_kg(
+			this.<Long>getColumnOriginalValue("menge_kg"));
+		fuetterungenImpl.setBienenvolk_id(
+			this.<Long>getColumnOriginalValue("bienenvolk_id"));
 
 		return fuetterungenImpl;
 	}
@@ -534,7 +527,7 @@ public class fuetterungenModelImpl
 			getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -545,9 +538,26 @@ public class fuetterungenModelImpl
 			Function<fuetterungen, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((fuetterungen)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply((fuetterungen)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -594,7 +604,9 @@ public class fuetterungenModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, fuetterungen>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					fuetterungen.class, ModelWrapper.class);
 
 	}
 

@@ -54,13 +54,17 @@ import de.timowolfinger.liferay_bis_service.service.persistence.medikamentePersi
 import de.timowolfinger.liferay_bis_service.service.persistence.trachtenPersistence;
 import de.timowolfinger.liferay_bis_service.service.persistence.voelkerentwicklungPersistence;
 import de.timowolfinger.liferay_bis_service.service.voelkerentwicklungLocalService;
+import de.timowolfinger.liferay_bis_service.service.voelkerentwicklungLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Field;
 
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -82,7 +86,7 @@ public abstract class voelkerentwicklungLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>voelkerentwicklungLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>de.timowolfinger.liferay_bis_service.service.voelkerentwicklungLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>voelkerentwicklungLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>voelkerentwicklungLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -157,6 +161,13 @@ public abstract class voelkerentwicklungLocalServiceBaseImpl
 	@Override
 	public <T> T dslQuery(DSLQuery dslQuery) {
 		return voelkerentwicklungPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -390,6 +401,11 @@ public abstract class voelkerentwicklungLocalServiceBaseImpl
 		return voelkerentwicklungPersistence.update(voelkerentwicklung);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -402,6 +418,8 @@ public abstract class voelkerentwicklungLocalServiceBaseImpl
 	public void setAopProxy(Object aopProxy) {
 		voelkerentwicklungLocalService =
 			(voelkerentwicklungLocalService)aopProxy;
+
+		_setLocalServiceUtilService(voelkerentwicklungLocalService);
 	}
 
 	/**
@@ -444,6 +462,23 @@ public abstract class voelkerentwicklungLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		voelkerentwicklungLocalService voelkerentwicklungLocalService) {
+
+		try {
+			Field field =
+				voelkerentwicklungLocalServiceUtil.class.getDeclaredField(
+					"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, voelkerentwicklungLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

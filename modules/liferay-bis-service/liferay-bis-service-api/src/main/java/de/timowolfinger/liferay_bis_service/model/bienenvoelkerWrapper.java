@@ -136,6 +136,11 @@ public class bienenvoelkerWrapper
 		}
 	}
 
+	@Override
+	public bienenvoelker cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the aktiv of this bienenvoelker.
 	 *

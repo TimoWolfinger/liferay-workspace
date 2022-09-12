@@ -14,9 +14,17 @@
 
 package de.timowolfinger.liferay_bis_service.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import de.timowolfinger.liferay_bis_service.model.ableger;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for ableger. This utility wraps
@@ -48,9 +56,7 @@ public class ablegerLocalServiceUtil {
 	 * @param ableger the ableger
 	 * @return the ableger that was added
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger addableger(
-		de.timowolfinger.liferay_bis_service.model.ableger ableger) {
-
+	public static ableger addableger(ableger ableger) {
 		return getService().addableger(ableger);
 	}
 
@@ -60,18 +66,16 @@ public class ablegerLocalServiceUtil {
 	 * @param id the primary key for the new ableger
 	 * @return the new ableger
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger
-		createableger(long id) {
-
+	public static ableger createableger(long id) {
 		return getService().createableger(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -86,10 +90,7 @@ public class ablegerLocalServiceUtil {
 	 * @param ableger the ableger
 	 * @return the ableger that was removed
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger
-		deleteableger(
-			de.timowolfinger.liferay_bis_service.model.ableger ableger) {
-
+	public static ableger deleteableger(ableger ableger) {
 		return getService().deleteableger(ableger);
 	}
 
@@ -104,33 +105,29 @@ public class ablegerLocalServiceUtil {
 	 * @return the ableger that was removed
 	 * @throws PortalException if a ableger with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger
-			deleteableger(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static ableger deleteableger(long id) throws PortalException {
 		return getService().deleteableger(id);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static <T> T dslQuery(
-		com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
-
+	public static <T> T dslQuery(DSLQuery dslQuery) {
 		return getService().dslQuery(dslQuery);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
 
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -140,9 +137,7 @@ public class ablegerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -158,9 +153,8 @@ public class ablegerLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -178,10 +172,9 @@ public class ablegerLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -193,9 +186,7 @@ public class ablegerLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -207,15 +198,13 @@ public class ablegerLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static de.timowolfinger.liferay_bis_service.model.ableger
-		fetchableger(long id) {
-
+	public static ableger fetchableger(long id) {
 		return getService().fetchableger(id);
 	}
 
@@ -226,10 +215,7 @@ public class ablegerLocalServiceUtil {
 	 * @return the ableger
 	 * @throws PortalException if a ableger with the primary key could not be found
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger getableger(
-			long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static ableger getableger(long id) throws PortalException {
 		return getService().getableger(id);
 	}
 
@@ -244,10 +230,7 @@ public class ablegerLocalServiceUtil {
 	 * @param end the upper bound of the range of ablegers (not inclusive)
 	 * @return the range of ablegers
 	 */
-	public static java.util.List
-		<de.timowolfinger.liferay_bis_service.model.ableger> getablegers(
-			int start, int end) {
-
+	public static List<ableger> getablegers(int start, int end) {
 		return getService().getablegers(start, end);
 	}
 
@@ -285,9 +268,8 @@ public class ablegerLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -302,31 +284,14 @@ public class ablegerLocalServiceUtil {
 	 * @param ableger the ableger
 	 * @return the ableger that was updated
 	 */
-	public static de.timowolfinger.liferay_bis_service.model.ableger
-		updateableger(
-			de.timowolfinger.liferay_bis_service.model.ableger ableger) {
-
+	public static ableger updateableger(ableger ableger) {
 		return getService().updateableger(ableger);
 	}
 
 	public static ablegerLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<ablegerLocalService, ablegerLocalService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(ablegerLocalService.class);
-
-		ServiceTracker<ablegerLocalService, ablegerLocalService>
-			serviceTracker =
-				new ServiceTracker<ablegerLocalService, ablegerLocalService>(
-					bundle.getBundleContext(), ablegerLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile ablegerLocalService _service;
 
 }

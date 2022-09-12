@@ -82,4 +82,7 @@ public interface beutemasseModel extends BaseModel<beutemasse> {
 	 */
 	public void setName(String name);
 
+	@Override
+	public beutemasse cloneWithOriginalValues();
+
 }

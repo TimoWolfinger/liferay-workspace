@@ -23,15 +23,16 @@ import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import de.timowolfinger.liferay_bis_service.model.honigernten;
 import de.timowolfinger.liferay_bis_service.model.honigerntenModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.Collections;
@@ -39,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -97,7 +99,7 @@ public class honigerntenModelImpl
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)
+	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
 	public static final long ID_COLUMN_BITMASK = 1L;
@@ -199,34 +201,6 @@ public class honigerntenModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
-	}
-
-	private static Function<InvocationHandler, honigernten>
-		_getProxyProviderFunction() {
-
-		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			honigernten.class.getClassLoader(), honigernten.class,
-			ModelWrapper.class);
-
-		try {
-			Constructor<honigernten> constructor =
-				(Constructor<honigernten>)proxyClass.getConstructor(
-					InvocationHandler.class);
-
-			return invocationHandler -> {
-				try {
-					return constructor.newInstance(invocationHandler);
-				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new InternalError(reflectiveOperationException);
-				}
-			};
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new InternalError(noSuchMethodException);
-		}
 	}
 
 	private static final Map<String, Function<honigernten, Object>>
@@ -352,7 +326,9 @@ public class honigerntenModelImpl
 		for (Map.Entry<String, Object> entry :
 				_columnOriginalValues.entrySet()) {
 
-			if (entry.getValue() != getColumnValue(entry.getKey())) {
+			if (!Objects.equals(
+					entry.getValue(), getColumnValue(entry.getKey()))) {
+
 				_columnBitmask |= _columnBitmasks.get(entry.getKey());
 			}
 		}
@@ -399,6 +375,23 @@ public class honigerntenModelImpl
 		honigerntenImpl.setTracht_id(getTracht_id());
 
 		honigerntenImpl.resetOriginalValues();
+
+		return honigerntenImpl;
+	}
+
+	@Override
+	public honigernten cloneWithOriginalValues() {
+		honigerntenImpl honigerntenImpl = new honigerntenImpl();
+
+		honigerntenImpl.setId(this.<Long>getColumnOriginalValue("id"));
+		honigerntenImpl.setErntedatum(
+			this.<Date>getColumnOriginalValue("erntedatum"));
+		honigerntenImpl.setErntemenge_kg(
+			this.<Integer>getColumnOriginalValue("erntemenge_kg"));
+		honigerntenImpl.setBienenvolk_id(
+			this.<Long>getColumnOriginalValue("bienenvolk_id"));
+		honigerntenImpl.setTracht_id(
+			this.<Long>getColumnOriginalValue("tracht_id"));
 
 		return honigerntenImpl;
 	}
@@ -507,7 +500,7 @@ public class honigerntenModelImpl
 			getAttributeGetterFunctions();
 
 		StringBundler sb = new StringBundler(
-			(4 * attributeGetterFunctions.size()) + 2);
+			(5 * attributeGetterFunctions.size()) + 2);
 
 		sb.append("{");
 
@@ -518,9 +511,26 @@ public class honigerntenModelImpl
 			Function<honigernten, Object> attributeGetterFunction =
 				entry.getValue();
 
+			sb.append("\"");
 			sb.append(attributeName);
-			sb.append("=");
-			sb.append(attributeGetterFunction.apply((honigernten)this));
+			sb.append("\": ");
+
+			Object value = attributeGetterFunction.apply((honigernten)this);
+
+			if (value == null) {
+				sb.append("null");
+			}
+			else if (value instanceof Blob || value instanceof Date ||
+					 value instanceof Map || value instanceof String) {
+
+				sb.append(
+					"\"" + StringUtil.replace(value.toString(), "\"", "'") +
+						"\"");
+			}
+			else {
+				sb.append(value);
+			}
+
 			sb.append(", ");
 		}
 
@@ -567,7 +577,9 @@ public class honigerntenModelImpl
 	private static class EscapedModelProxyProviderFunctionHolder {
 
 		private static final Function<InvocationHandler, honigernten>
-			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+			_escapedModelProxyProviderFunction =
+				ProxyUtil.getProxyProviderFunction(
+					honigernten.class, ModelWrapper.class);
 
 	}
 

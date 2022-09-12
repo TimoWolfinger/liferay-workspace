@@ -111,4 +111,7 @@ public interface futtermittelModel extends BaseModel<futtermittel> {
 	 */
 	public void setGebindegroesse(String gebindegroesse);
 
+	@Override
+	public futtermittel cloneWithOriginalValues();
+
 }

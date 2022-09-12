@@ -92,6 +92,11 @@ public class ablegerWrapper
 		}
 	}
 
+	@Override
+	public ableger cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the abgeschlossen of this ableger.
 	 *
