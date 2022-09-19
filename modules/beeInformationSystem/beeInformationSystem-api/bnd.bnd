@@ -1,0 +1,10 @@
+Bundle-Name: beeInformationSystem-api
+Bundle-SymbolicName: de.timowolfinger.liferay.beeInformationSystem.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	de.timowolfinger.liferay.beeInformationSystem.exception,\
+	de.timowolfinger.liferay.beeInformationSystem.model,\
+	de.timowolfinger.liferay.beeInformationSystem.service,\
+	de.timowolfinger.liferay.beeInformationSystem.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../beeInformationSystem-service/service.xml

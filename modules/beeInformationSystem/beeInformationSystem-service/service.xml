@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
 
-<service-builder dependency-injector="ds" package-path="de.timowolfinger.liferay_bis_service">
+<service-builder dependency-injector="ds" package-path="de.timowolfinger.liferay.beeInformationSystem">
 	<namespace></namespace>
-	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
 	<entity local-service="true" name="hersteller" remote-service="false" uuid="false" table="hersteller" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="hersteller_id" db-name="hersteller_id" primary="true" type="long" />
@@ -79,7 +78,6 @@
 			<order-column name="id" />
 		</order>
 	</entity>
-
 	<entity local-service="true" name="fuetterungen" remote-service="false" uuid="false" table="fuetterungen" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="fuetterungen_id" db-name="fuetterungen_id" primary="true" type="long" />
@@ -124,7 +122,6 @@
 			<order-column name="id" />
 		</order>
 	</entity>
-
 	<entity local-service="true" name="trachten" remote-service="false" uuid="false" table="trachten" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="trachten_id" db-name="trachten_id" primary="true" type="long" />
@@ -144,5 +141,5 @@
 		<order by="asc">
 			<order-column name="id" />
 		</order>
-	</entity>
+	</entity>	
 </service-builder>
