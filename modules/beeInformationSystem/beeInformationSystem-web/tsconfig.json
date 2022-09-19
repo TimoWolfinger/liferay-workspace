@@ -1,0 +1,34 @@
+/* eslint-disable */
+{
+  "compilerOptions": {
+    "outDir": "./build/resources/main/META-INF/resources/dist/",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "rootDir": "./src/main/resources/META-INF/resources/lib",
+    "target": "es5",
+    "typeRoots": ["./src/main/resources/META-INF/resources/lib/types"],
+    "types": ["node"],
+    "lib": ["ES2015", "DOM"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*":[
+        "./src/main/resources/META-INF/resources/lib/*"
+     ]              
+    }
+  },
+  "include": [
+    "src/main/resources/META-INF/resources/lib/**/*.ts",
+    "src/main/resources/META-INF/resources/lib/**/*.vue",
+    "src/main/resources/META-INF/resources/lib/**/*.json",
+        
+  ],
+  "files": [
+    "src/main/resources/META-INF/resources/lib/types/index.d.ts"
+  ]
+}

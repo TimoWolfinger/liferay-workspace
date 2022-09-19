@@ -1,0 +1,29 @@
+{
+    "components": {
+        "headlines": {
+            "helloWorld": "Hallo Welt!",
+            "colors": "Bootstrap5-Farben",
+            "buttons": "Bootstrap5-Buttons",
+            "modals": "Bootstrap5-Modals",
+            "spinners": "Devextreme Lade-Anzeiger",
+            "customSize": "eigene Größen",
+            "customImage": "eigenes Bild",
+            "dataGrid": "Devextreme DataGrid",
+            "veeValidate": "Vee-Validate mit Vue i18n-Fehlermeldung"
+        },
+        "modal": {
+            "title": "Modal-Titel",
+            "body": "Modal body",
+            "buttons": {
+                "save": "Speichern",
+                "cancel": "Abbrechen"
+            }
+        },
+        "buttons": {
+            "launchModal": "Demo-Modal öffnen"
+        }
+    },
+    "formValidationErrors" : {
+        "email": "Bitte geben Sie eine gültige Email-Adresse ein!"
+    }
+}

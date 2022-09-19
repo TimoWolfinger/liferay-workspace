@@ -1,0 +1,1 @@
+# Liferay Widget: $artifactId

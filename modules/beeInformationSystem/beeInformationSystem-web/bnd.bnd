@@ -1,0 +1,6 @@
+Bundle-Name: beeInformationSystem-web
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: de.timowolfinger.liferay.beeInformationSystem.portlet
+Export-Package: de.timowolfinger.liferay.beeInformationSystem.portlet.constants
+Include-Resource: package.json
+Web-Contextpath: /beeInformationSystem-web-1.0.0 
