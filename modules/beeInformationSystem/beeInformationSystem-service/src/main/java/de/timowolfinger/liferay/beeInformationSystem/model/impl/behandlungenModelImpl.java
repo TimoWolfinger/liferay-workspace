@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see behandlungenImpl
  * @generated
  */
+@JSON(strict = true)
 public class behandlungenModelImpl
 	extends BaseModelImpl<behandlungen> implements behandlungenModel {
 
@@ -244,6 +246,7 @@ public class behandlungenModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getBehandlungen_id() {
 		return _behandlungen_id;
@@ -258,6 +261,7 @@ public class behandlungenModelImpl
 		_behandlungen_id = behandlungen_id;
 	}
 
+	@JSON
 	@Override
 	public long getBienenvolk_id() {
 		return _bienenvolk_id;
@@ -272,6 +276,7 @@ public class behandlungenModelImpl
 		_bienenvolk_id = bienenvolk_id;
 	}
 
+	@JSON
 	@Override
 	public long getMedikament_id() {
 		return _medikament_id;
@@ -286,6 +291,7 @@ public class behandlungenModelImpl
 		_medikament_id = medikament_id;
 	}
 
+	@JSON
 	@Override
 	public Date getBeginn() {
 		return _beginn;
@@ -300,6 +306,7 @@ public class behandlungenModelImpl
 		_beginn = beginn;
 	}
 
+	@JSON
 	@Override
 	public Date getEnde() {
 		return _ende;

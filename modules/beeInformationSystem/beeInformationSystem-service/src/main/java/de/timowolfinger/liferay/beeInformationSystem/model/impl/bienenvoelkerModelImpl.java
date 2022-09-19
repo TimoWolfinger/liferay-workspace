@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see bienenvoelkerImpl
  * @generated
  */
+@JSON(strict = true)
 public class bienenvoelkerModelImpl
 	extends BaseModelImpl<bienenvoelker> implements bienenvoelkerModel {
 
@@ -300,6 +302,7 @@ public class bienenvoelkerModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getBienenvoelker_id() {
 		return _bienenvoelker_id;
@@ -314,6 +317,7 @@ public class bienenvoelkerModelImpl
 		_bienenvoelker_id = bienenvoelker_id;
 	}
 
+	@JSON
 	@Override
 	public String getBezeichnung() {
 		if (_bezeichnung == null) {
@@ -333,6 +337,7 @@ public class bienenvoelkerModelImpl
 		_bezeichnung = bezeichnung;
 	}
 
+	@JSON
 	@Override
 	public long getWeisel_jahr() {
 		return _weisel_jahr;
@@ -347,6 +352,7 @@ public class bienenvoelkerModelImpl
 		_weisel_jahr = weisel_jahr;
 	}
 
+	@JSON
 	@Override
 	public String getBemerkungen() {
 		if (_bemerkungen == null) {
@@ -366,6 +372,7 @@ public class bienenvoelkerModelImpl
 		_bemerkungen = bemerkungen;
 	}
 
+	@JSON
 	@Override
 	public long getBienenvoelker_id() {
 		return _bienenvoelker_id;
@@ -380,6 +387,7 @@ public class bienenvoelkerModelImpl
 		_bienenvoelker_id = bienenvoelker_id;
 	}
 
+	@JSON
 	@Override
 	public long getBienenrasse_id() {
 		return _bienenrasse_id;
@@ -394,6 +402,7 @@ public class bienenvoelkerModelImpl
 		_bienenrasse_id = bienenrasse_id;
 	}
 
+	@JSON
 	@Override
 	public long getBeutemass_id() {
 		return _beutemass_id;
@@ -408,6 +417,7 @@ public class bienenvoelkerModelImpl
 		_beutemass_id = beutemass_id;
 	}
 
+	@JSON
 	@Override
 	public String getGeo_coordinaten() {
 		if (_geo_coordinaten == null) {
@@ -427,6 +437,7 @@ public class bienenvoelkerModelImpl
 		_geo_coordinaten = geo_coordinaten;
 	}
 
+	@JSON
 	@Override
 	public int getAnschaffung_ableger_jahr() {
 		return _anschaffung_ableger_jahr;
@@ -441,6 +452,7 @@ public class bienenvoelkerModelImpl
 		_anschaffung_ableger_jahr = anschaffung_ableger_jahr;
 	}
 
+	@JSON
 	@Override
 	public Boolean getAktiv() {
 		return _aktiv;
@@ -455,6 +467,7 @@ public class bienenvoelkerModelImpl
 		_aktiv = aktiv;
 	}
 
+	@JSON
 	@Override
 	public int getAufloesung_tod_jahr() {
 		return _aufloesung_tod_jahr;
@@ -469,6 +482,7 @@ public class bienenvoelkerModelImpl
 		_aufloesung_tod_jahr = aufloesung_tod_jahr;
 	}
 
+	@JSON
 	@Override
 	public long getGesundheitszeugnis_id() {
 		return _gesundheitszeugnis_id;

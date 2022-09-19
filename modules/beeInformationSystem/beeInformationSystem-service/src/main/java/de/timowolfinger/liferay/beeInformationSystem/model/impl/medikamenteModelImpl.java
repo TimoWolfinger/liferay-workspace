@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see medikamenteImpl
  * @generated
  */
+@JSON(strict = true)
 public class medikamenteModelImpl
 	extends BaseModelImpl<medikamente> implements medikamenteModel {
 
@@ -238,6 +240,7 @@ public class medikamenteModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getMedikamente_id() {
 		return _medikamente_id;
@@ -252,6 +255,7 @@ public class medikamenteModelImpl
 		_medikamente_id = medikamente_id;
 	}
 
+	@JSON
 	@Override
 	public String getName() {
 		if (_name == null) {
@@ -271,6 +275,7 @@ public class medikamenteModelImpl
 		_name = name;
 	}
 
+	@JSON
 	@Override
 	public long getHersteller_id() {
 		return _hersteller_id;
@@ -285,6 +290,7 @@ public class medikamenteModelImpl
 		_hersteller_id = hersteller_id;
 	}
 
+	@JSON
 	@Override
 	public String getDosierung() {
 		if (_dosierung == null) {

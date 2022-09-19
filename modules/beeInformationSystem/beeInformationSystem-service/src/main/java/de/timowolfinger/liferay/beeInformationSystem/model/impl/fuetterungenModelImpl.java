@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see fuetterungenImpl
  * @generated
  */
+@JSON(strict = true)
 public class fuetterungenModelImpl
 	extends BaseModelImpl<fuetterungen> implements fuetterungenModel {
 
@@ -249,6 +251,7 @@ public class fuetterungenModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getFuetterungen_id() {
 		return _fuetterungen_id;
@@ -263,6 +266,7 @@ public class fuetterungenModelImpl
 		_fuetterungen_id = fuetterungen_id;
 	}
 
+	@JSON
 	@Override
 	public long getFuttermittel_id() {
 		return _futtermittel_id;
@@ -277,6 +281,7 @@ public class fuetterungenModelImpl
 		_futtermittel_id = futtermittel_id;
 	}
 
+	@JSON
 	@Override
 	public Date getBeginn() {
 		return _beginn;
@@ -291,6 +296,7 @@ public class fuetterungenModelImpl
 		_beginn = beginn;
 	}
 
+	@JSON
 	@Override
 	public Date getEnde() {
 		return _ende;
@@ -305,6 +311,7 @@ public class fuetterungenModelImpl
 		_ende = ende;
 	}
 
+	@JSON
 	@Override
 	public long getMenge_kg() {
 		return _menge_kg;
@@ -319,6 +326,7 @@ public class fuetterungenModelImpl
 		_menge_kg = menge_kg;
 	}
 
+	@JSON
 	@Override
 	public long getBienenvolk_id() {
 		return _bienenvolk_id;

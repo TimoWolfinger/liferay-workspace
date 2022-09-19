@@ -3,7 +3,7 @@
 
 <service-builder dependency-injector="ds" package-path="de.timowolfinger.liferay.beeInformationSystem">
 	<namespace></namespace>
-	<entity local-service="true" name="hersteller" remote-service="false" uuid="false" table="hersteller" data-source="extDataSource">
+	<entity local-service="true" name="hersteller" remote-service="true" uuid="false" table="hersteller" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="hersteller_id" db-name="hersteller_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
@@ -11,7 +11,7 @@
 			<order-column name="hersteller_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="medikamente" remote-service="false" uuid="false" table="medikamente" data-source="extDataSource">
+	<entity local-service="true" name="medikamente" remote-service="true" uuid="false" table="medikamente" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="medikamente_id" db-name="medikamente_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
@@ -21,7 +21,7 @@
 			<order-column name="medikamente_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="ableger" remote-service="false" uuid="false" table="ableger" data-source="extDataSource">
+	<entity local-service="true" name="ableger" remote-service="true" uuid="false" table="ableger" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="ableger_id" db-name="ableger_id" primary="true" type="long" />
 	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
@@ -33,7 +33,7 @@
 			<order-column name="ableger_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="behandlungen" remote-service="false" uuid="false" table="behandlungen" data-source="extDataSource">
+	<entity local-service="true" name="behandlungen" remote-service="true" uuid="false" table="behandlungen" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="behandlungen_id" db-name="behandlungen_id" primary="true" type="long" />
 	   	<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
@@ -44,7 +44,7 @@
 			<order-column name="behandlungen_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="beutemasse" remote-service="false" uuid="false" table="beutemasse" data-source="extDataSource">
+	<entity local-service="true" name="beutemasse" remote-service="true" uuid="false" table="beutemasse" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="beutemasse_id" db-name="beutemasse_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
@@ -52,7 +52,7 @@
 			<order-column name="beutemasse_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="bienenrassen" remote-service="false" uuid="false" table="bienenrassen" data-source="extDataSource">
+	<entity local-service="true" name="bienenrassen" remote-service="true" uuid="false" table="bienenrassen" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="bienenrassen_id" db-name="bienenrassen_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
@@ -60,7 +60,7 @@
 			<order-column name="bienenrassen_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="bienenvoelker" remote-service="false" uuid="false" table="bienenvoelker" data-source="extDataSource">
+	<entity local-service="true" name="bienenvoelker" remote-service="true" uuid="false" table="bienenvoelker" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="bienenvoelker_id" db-name="bienenvoelker_id" primary="true" type="long" />
 	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
@@ -78,7 +78,7 @@
 			<order-column name="bienenvoelker_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="fuetterungen" remote-service="false" uuid="false" table="fuetterungen" data-source="extDataSource">
+	<entity local-service="true" name="fuetterungen" remote-service="true" uuid="false" table="fuetterungen" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="fuetterungen_id" db-name="fuetterungen_id" primary="true" type="long" />
 	   	<column name="futtermittel_id" db-name="futtermittel_id" type="long" />
@@ -111,7 +111,7 @@
 			<order-column name="gesundheitszeugnisse_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="honigernten" remote-service="false" uuid="false" table="honigernten" data-source="extDataSource">
+	<entity local-service="true" name="honigernten" remote-service="true" uuid="false" table="honigernten" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="honigernten_id" db-name="honigernten_id" primary="true" type="long" />
 	   	<column name="erntedatum" db-name="erntedatum" type="Date" />
@@ -122,7 +122,7 @@
 			<order-column name="honigernten_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="trachten" remote-service="false" uuid="false" table="trachten" data-source="extDataSource">
+	<entity local-service="true" name="trachten" remote-service="true" uuid="false" table="trachten" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="trachten_id" db-name="trachten_id" primary="true" type="long" />
 	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
@@ -130,7 +130,7 @@
 			<order-column name="trachten_id" />
 		</order>
 	</entity>
-	<entity local-service="true" name="voelkerentwicklung" remote-service="false" uuid="false" table="voelkerentwicklung" data-source="extDataSource">
+	<entity local-service="true" name="voelkerentwicklung" remote-service="true" uuid="false" table="voelkerentwicklung" data-source="extDataSource">
 		<!-- PK fields -->
 		<column name="voelkerentwicklung_id" db-name="voelkerentwicklung_id" primary="true" type="long" />
 	   	<column name="anzahl_bebrueteter_rahmen" db-name="anzahl_bebrueteter_rahmen" type="float" />

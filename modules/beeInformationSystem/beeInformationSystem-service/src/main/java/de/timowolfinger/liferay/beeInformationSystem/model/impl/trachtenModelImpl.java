@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see trachtenImpl
  * @generated
  */
+@JSON(strict = true)
 public class trachtenModelImpl
 	extends BaseModelImpl<trachten> implements trachtenModel {
 
@@ -225,6 +227,7 @@ public class trachtenModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getTrachten_id() {
 		return _trachten_id;
@@ -239,6 +242,7 @@ public class trachtenModelImpl
 		_trachten_id = trachten_id;
 	}
 
+	@JSON
 	@Override
 	public String getBezeichnung() {
 		if (_bezeichnung == null) {

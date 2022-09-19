@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see bienenrassenImpl
  * @generated
  */
+@JSON(strict = true)
 public class bienenrassenModelImpl
 	extends BaseModelImpl<bienenrassen> implements bienenrassenModel {
 
@@ -226,6 +228,7 @@ public class bienenrassenModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getBienenrassen_id() {
 		return _bienenrassen_id;
@@ -240,6 +243,7 @@ public class bienenrassenModelImpl
 		_bienenrassen_id = bienenrassen_id;
 	}
 
+	@JSON
 	@Override
 	public String getName() {
 		if (_name == null) {

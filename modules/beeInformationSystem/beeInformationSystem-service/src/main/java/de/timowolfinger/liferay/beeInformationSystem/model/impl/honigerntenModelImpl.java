@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see honigerntenImpl
  * @generated
  */
+@JSON(strict = true)
 public class honigerntenModelImpl
 	extends BaseModelImpl<honigernten> implements honigerntenModel {
 
@@ -246,6 +248,7 @@ public class honigerntenModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getHonigernten_id() {
 		return _honigernten_id;
@@ -260,6 +263,7 @@ public class honigerntenModelImpl
 		_honigernten_id = honigernten_id;
 	}
 
+	@JSON
 	@Override
 	public Date getErntedatum() {
 		return _erntedatum;
@@ -274,6 +278,7 @@ public class honigerntenModelImpl
 		_erntedatum = erntedatum;
 	}
 
+	@JSON
 	@Override
 	public int getErntemenge_kg() {
 		return _erntemenge_kg;
@@ -288,6 +293,7 @@ public class honigerntenModelImpl
 		_erntemenge_kg = erntemenge_kg;
 	}
 
+	@JSON
 	@Override
 	public long getBienenvolk_id() {
 		return _bienenvolk_id;
@@ -302,6 +308,7 @@ public class honigerntenModelImpl
 		_bienenvolk_id = bienenvolk_id;
 	}
 
+	@JSON
 	@Override
 	public long getTracht_id() {
 		return _tracht_id;

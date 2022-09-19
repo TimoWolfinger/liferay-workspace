@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see ablegerImpl
  * @generated
  */
+@JSON(strict = true)
 public class ablegerModelImpl
 	extends BaseModelImpl<ableger> implements ablegerModel {
 
@@ -248,6 +250,7 @@ public class ablegerModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getAbleger_id() {
 		return _ableger_id;
@@ -262,6 +265,7 @@ public class ablegerModelImpl
 		_ableger_id = ableger_id;
 	}
 
+	@JSON
 	@Override
 	public String getBezeichnung() {
 		if (_bezeichnung == null) {
@@ -281,6 +285,7 @@ public class ablegerModelImpl
 		_bezeichnung = bezeichnung;
 	}
 
+	@JSON
 	@Override
 	public Date getDatum_ablegerbildung() {
 		return _datum_ablegerbildung;
@@ -295,6 +300,7 @@ public class ablegerModelImpl
 		_datum_ablegerbildung = datum_ablegerbildung;
 	}
 
+	@JSON
 	@Override
 	public long getBienen_id() {
 		return _bienen_id;
@@ -309,6 +315,7 @@ public class ablegerModelImpl
 		_bienen_id = bienen_id;
 	}
 
+	@JSON
 	@Override
 	public Boolean getErfolgreich() {
 		return _erfolgreich;
@@ -323,6 +330,7 @@ public class ablegerModelImpl
 		_erfolgreich = erfolgreich;
 	}
 
+	@JSON
 	@Override
 	public Boolean getAbgeschlossen() {
 		return _abgeschlossen;

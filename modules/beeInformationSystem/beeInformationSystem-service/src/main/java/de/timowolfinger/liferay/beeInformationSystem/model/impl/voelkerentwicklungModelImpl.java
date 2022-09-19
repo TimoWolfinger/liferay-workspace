@@ -18,6 +18,7 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -55,6 +56,7 @@ import java.util.function.Function;
  * @see voelkerentwicklungImpl
  * @generated
  */
+@JSON(strict = true)
 public class voelkerentwicklungModelImpl
 	extends BaseModelImpl<voelkerentwicklung>
 	implements voelkerentwicklungModel {
@@ -268,6 +270,7 @@ public class voelkerentwicklungModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
+	@JSON
 	@Override
 	public long getVoelkerentwicklung_id() {
 		return _voelkerentwicklung_id;
@@ -282,6 +285,7 @@ public class voelkerentwicklungModelImpl
 		_voelkerentwicklung_id = voelkerentwicklung_id;
 	}
 
+	@JSON
 	@Override
 	public float getAnzahl_bebrueteter_rahmen() {
 		return _anzahl_bebrueteter_rahmen;
@@ -296,6 +300,7 @@ public class voelkerentwicklungModelImpl
 		_anzahl_bebrueteter_rahmen = anzahl_bebrueteter_rahmen;
 	}
 
+	@JSON
 	@Override
 	public long getAbschaetzung_anzahl_individuen() {
 		return _abschaetzung_anzahl_individuen;
@@ -312,6 +317,7 @@ public class voelkerentwicklungModelImpl
 		_abschaetzung_anzahl_individuen = abschaetzung_anzahl_individuen;
 	}
 
+	@JSON
 	@Override
 	public long getBienenvoelker_id() {
 		return _bienenvoelker_id;
@@ -326,6 +332,7 @@ public class voelkerentwicklungModelImpl
 		_bienenvoelker_id = bienenvoelker_id;
 	}
 
+	@JSON
 	@Override
 	public Date getDatum() {
 		return _datum;
@@ -340,6 +347,7 @@ public class voelkerentwicklungModelImpl
 		_datum = datum;
 	}
 
+	@JSON
 	@Override
 	public float getStockwaage_gewicht_kg() {
 		return _stockwaage_gewicht_kg;
