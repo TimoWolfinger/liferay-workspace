@@ -8,7 +8,7 @@
 		<column name="hersteller_id" db-name="hersteller_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="hersteller_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="medikamente" remote-service="false" uuid="false" table="medikamente" data-source="extDataSource">
@@ -18,7 +18,7 @@
 		<column name="hersteller_id" db-name="hersteller_id" type="long" />
 		<column name="dosierung" db-name="dosierung" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="medikamente_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="ableger" remote-service="false" uuid="false" table="ableger" data-source="extDataSource">
@@ -30,7 +30,7 @@
 		<column name="erfolgreich" db-name="erfolgreich" type="Boolean" />
 		<column name="abgeschlossen" db-name="abgeschlossen" type="Boolean" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="ableger_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="behandlungen" remote-service="false" uuid="false" table="behandlungen" data-source="extDataSource">
@@ -41,7 +41,7 @@
 		<column name="beginn" db-name="beginn" type="Date" />
 		<column name="ende" db-name="ende" type="Date" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="behandlungen_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="beutemasse" remote-service="false" uuid="false" table="beutemasse" data-source="extDataSource">
@@ -49,7 +49,7 @@
 		<column name="beutemasse_id" db-name="beutemasse_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="beutemasse_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="bienenrassen" remote-service="false" uuid="false" table="bienenrassen" data-source="extDataSource">
@@ -57,7 +57,7 @@
 		<column name="bienenrassen_id" db-name="bienenrassen_id" primary="true" type="long" />
 	   	<column name="name" db-name="name" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="bienenrassen_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="bienenvoelker" remote-service="false" uuid="false" table="bienenvoelker" data-source="extDataSource">
@@ -75,7 +75,7 @@
 		<column name="aufloesung_tod_jahr" db-name="aufloesung_tod_jahr" type="int" />
 		<column name="gesundheitszeugnis_id" db-name="gesundheitszeugnis_id" type="long" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="bienenvoelker_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="fuetterungen" remote-service="false" uuid="false" table="fuetterungen" data-source="extDataSource">
@@ -87,7 +87,7 @@
 		<column name="menge_kg" db-name="menge_kg" type="long" />
 		<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="fuetterungen_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="futtermittel" remote-service="false" uuid="false" table="futtermittel" data-source="extDataSource">
@@ -97,7 +97,7 @@
 		<column name="hersteller_id" db-name="hersteller_id" type="long" />
 		<column name="gebindegroesse" db-name="gebindegroesse" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="futtermittel_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="gesundheitszeugnisse" remote-service="false" uuid="false" table="gesundheitszeugnisse" data-source="extDataSource">
@@ -108,7 +108,7 @@
 		<column name="ausstellungsdatum" db-name="ausstellungsdatum" type="Date" />
 		<column name="dokument_dateityp" db-name="dokument_dateityp" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="gesundheitszeugnisse_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="honigernten" remote-service="false" uuid="false" table="honigernten" data-source="extDataSource">
@@ -119,7 +119,7 @@
 		<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
 		<column name="tracht_id" db-name="tracht_id" type="long" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="honigernten_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="trachten" remote-service="false" uuid="false" table="trachten" data-source="extDataSource">
@@ -127,7 +127,7 @@
 		<column name="trachten_id" db-name="trachten_id" primary="true" type="long" />
 	   	<column name="bezeichnung" db-name="bezeichnung" type="String" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="trachten_id" />
 		</order>
 	</entity>
 	<entity local-service="true" name="voelkerentwicklung" remote-service="false" uuid="false" table="voelkerentwicklung" data-source="extDataSource">
@@ -139,7 +139,7 @@
 		<column name="datum" db-name="datum" type="Date" />
 		<column name="stockwaage_gewicht_kg" db-name="stockwaage_gewicht_kg" type="float" />
 		<order by="asc">
-			<order-column name="id" />
+			<order-column name="voelkerentwicklung_id" />
 		</order>
 	</entity>	
 </service-builder>
