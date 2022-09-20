@@ -37,7 +37,7 @@
 		<!-- PK fields -->
 		<column name="behandlung_id" db-name="behandlung_id" primary="true" type="long" />
 	   	<column name="bienenvolk_id" db-name="bienenvolk_id" type="long" />
-		<column name="medikament_id" db-name="dmedikament_id" type="long" />
+		<column name="medikament_id" db-name="medikament_id" type="long" />
 		<column name="beginn" db-name="beginn" type="Date" />
 		<column name="ende" db-name="ende" type="Date" />
 		<order by="asc">

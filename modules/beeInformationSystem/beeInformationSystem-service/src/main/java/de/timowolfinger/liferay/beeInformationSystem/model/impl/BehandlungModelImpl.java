@@ -67,7 +67,7 @@ public class BehandlungModelImpl
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"behandlung_id", Types.BIGINT}, {"bienenvolk_id", Types.BIGINT},
-		{"dmedikament_id", Types.BIGINT}, {"beginn", Types.TIMESTAMP},
+		{"medikament_id", Types.BIGINT}, {"beginn", Types.TIMESTAMP},
 		{"ende", Types.TIMESTAMP}
 	};
 
@@ -77,13 +77,13 @@ public class BehandlungModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("behandlung_id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("bienenvolk_id", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("dmedikament_id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("medikament_id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("beginn", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("ende", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table behandlung (behandlung_id LONG not null primary key,bienenvolk_id LONG,dmedikament_id LONG,beginn DATE null,ende DATE null)";
+		"create table behandlung (behandlung_id LONG not null primary key,bienenvolk_id LONG,medikament_id LONG,beginn DATE null,ende DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table behandlung";
 
@@ -389,7 +389,7 @@ public class BehandlungModelImpl
 		behandlungImpl.setBienenvolk_id(
 			this.<Long>getColumnOriginalValue("bienenvolk_id"));
 		behandlungImpl.setMedikament_id(
-			this.<Long>getColumnOriginalValue("dmedikament_id"));
+			this.<Long>getColumnOriginalValue("medikament_id"));
 		behandlungImpl.setBeginn(this.<Date>getColumnOriginalValue("beginn"));
 		behandlungImpl.setEnde(this.<Date>getColumnOriginalValue("ende"));
 
@@ -596,8 +596,6 @@ public class BehandlungModelImpl
 	private Date _ende;
 
 	public <T> T getColumnValue(String columnName) {
-		columnName = _attributeNames.getOrDefault(columnName, columnName);
-
 		Function<Behandlung, Object> function = _attributeGetterFunctions.get(
 			columnName);
 
@@ -626,19 +624,9 @@ public class BehandlungModelImpl
 
 		_columnOriginalValues.put("behandlung_id", _behandlung_id);
 		_columnOriginalValues.put("bienenvolk_id", _bienenvolk_id);
-		_columnOriginalValues.put("dmedikament_id", _medikament_id);
+		_columnOriginalValues.put("medikament_id", _medikament_id);
 		_columnOriginalValues.put("beginn", _beginn);
 		_columnOriginalValues.put("ende", _ende);
-	}
-
-	private static final Map<String, String> _attributeNames;
-
-	static {
-		Map<String, String> attributeNames = new HashMap<>();
-
-		attributeNames.put("dmedikament_id", "medikament_id");
-
-		_attributeNames = Collections.unmodifiableMap(attributeNames);
 	}
 
 	private transient Map<String, Object> _columnOriginalValues;
@@ -656,7 +644,7 @@ public class BehandlungModelImpl
 
 		columnBitmasks.put("bienenvolk_id", 2L);
 
-		columnBitmasks.put("dmedikament_id", 4L);
+		columnBitmasks.put("medikament_id", 4L);
 
 		columnBitmasks.put("beginn", 8L);
 

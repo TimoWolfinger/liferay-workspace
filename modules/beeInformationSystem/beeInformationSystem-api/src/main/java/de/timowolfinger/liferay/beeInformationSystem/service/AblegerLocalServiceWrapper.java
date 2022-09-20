@@ -53,6 +53,17 @@ public class AblegerLocalServiceWrapper
 		return _ablegerLocalService.addAbleger(ableger);
 	}
 
+	@Override
+	public de.timowolfinger.liferay.beeInformationSystem.model.Ableger
+		addAbleger(
+			String bezeichnung, Date datum_ablegerbildung, Long muttervolk_id,
+			Boolean erfolgreich, Boolean abgeschlossen) {
+
+		return _ablegerLocalService.addAbleger(
+			bezeichnung, datum_ablegerbildung, muttervolk_id, erfolgreich,
+			abgeschlossen);
+	}
+
 	/**
 	 * Creates a new ableger with the primary key. Does not add the ableger to the database.
 	 *

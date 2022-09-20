@@ -37,7 +37,7 @@ public class BehandlungTable extends BaseTable<BehandlungTable> {
 	public final Column<BehandlungTable, Long> bienenvolk_id = createColumn(
 		"bienenvolk_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<BehandlungTable, Long> medikament_id = createColumn(
-		"dmedikament_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+		"medikament_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<BehandlungTable, Date> beginn = createColumn(
 		"beginn", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<BehandlungTable, Date> ende = createColumn(

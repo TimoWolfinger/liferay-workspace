@@ -76,6 +76,10 @@ public interface AblegerLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Ableger addAbleger(Ableger ableger);
 
+	public Ableger addAbleger(
+		String bezeichnung, Date datum_ablegerbildung, Long muttervolk_id,
+		Boolean erfolgreich, Boolean abgeschlossen);
+
 	/**
 	 * Creates a new ableger with the primary key. Does not add the ableger to the database.
 	 *

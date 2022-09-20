@@ -60,6 +60,15 @@ public class AblegerLocalServiceUtil {
 		return getService().addAbleger(ableger);
 	}
 
+	public static Ableger addAbleger(
+		String bezeichnung, Date datum_ablegerbildung, Long muttervolk_id,
+		Boolean erfolgreich, Boolean abgeschlossen) {
+
+		return getService().addAbleger(
+			bezeichnung, datum_ablegerbildung, muttervolk_id, erfolgreich,
+			abgeschlossen);
+	}
+
 	/**
 	 * Creates a new ableger with the primary key. Does not add the ableger to the database.
 	 *
