@@ -70,7 +70,7 @@ public class VoelkerentwicklungModelImpl
 		{"voelkerentwicklung_id", Types.BIGINT},
 		{"anzahl_bebrueteter_rahmen", Types.FLOAT},
 		{"abschaetzung_anzahl_individuen", Types.BIGINT},
-		{"bienenvoelker_id", Types.BIGINT}, {"datum", Types.TIMESTAMP},
+		{"bienenvolk_id", Types.BIGINT}, {"datum", Types.TIMESTAMP},
 		{"stockwaage_gewicht_kg", Types.FLOAT}
 	};
 
@@ -81,13 +81,13 @@ public class VoelkerentwicklungModelImpl
 		TABLE_COLUMNS_MAP.put("voelkerentwicklung_id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("anzahl_bebrueteter_rahmen", Types.FLOAT);
 		TABLE_COLUMNS_MAP.put("abschaetzung_anzahl_individuen", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("bienenvoelker_id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("bienenvolk_id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("datum", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("stockwaage_gewicht_kg", Types.FLOAT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table voelkerentwicklung (voelkerentwicklung_id LONG not null primary key,anzahl_bebrueteter_rahmen DOUBLE,abschaetzung_anzahl_individuen LONG,bienenvoelker_id LONG,datum DATE null,stockwaage_gewicht_kg DOUBLE)";
+		"create table voelkerentwicklung (voelkerentwicklung_id LONG not null primary key,anzahl_bebrueteter_rahmen DOUBLE,abschaetzung_anzahl_individuen LONG,bienenvolk_id LONG,datum DATE null,stockwaage_gewicht_kg DOUBLE)";
 
 	public static final String TABLE_SQL_DROP = "drop table voelkerentwicklung";
 
@@ -245,11 +245,11 @@ public class VoelkerentwicklungModelImpl
 			(BiConsumer<Voelkerentwicklung, Long>)
 				Voelkerentwicklung::setAbschaetzung_anzahl_individuen);
 		attributeGetterFunctions.put(
-			"bienenvoelker_id", Voelkerentwicklung::getBienenvoelker_id);
+			"bienenvolk_id", Voelkerentwicklung::getBienenvolk_id);
 		attributeSetterBiConsumers.put(
-			"bienenvoelker_id",
+			"bienenvolk_id",
 			(BiConsumer<Voelkerentwicklung, Long>)
-				Voelkerentwicklung::setBienenvoelker_id);
+				Voelkerentwicklung::setBienenvolk_id);
 		attributeGetterFunctions.put("datum", Voelkerentwicklung::getDatum);
 		attributeSetterBiConsumers.put(
 			"datum",
@@ -313,17 +313,17 @@ public class VoelkerentwicklungModelImpl
 	}
 
 	@Override
-	public long getBienenvoelker_id() {
-		return _bienenvoelker_id;
+	public long getBienenvolk_id() {
+		return _bienenvolk_id;
 	}
 
 	@Override
-	public void setBienenvoelker_id(long bienenvoelker_id) {
+	public void setBienenvolk_id(long bienenvolk_id) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_bienenvoelker_id = bienenvoelker_id;
+		_bienenvolk_id = bienenvolk_id;
 	}
 
 	@Override
@@ -417,7 +417,7 @@ public class VoelkerentwicklungModelImpl
 			getAnzahl_bebrueteter_rahmen());
 		voelkerentwicklungImpl.setAbschaetzung_anzahl_individuen(
 			getAbschaetzung_anzahl_individuen());
-		voelkerentwicklungImpl.setBienenvoelker_id(getBienenvoelker_id());
+		voelkerentwicklungImpl.setBienenvolk_id(getBienenvolk_id());
 		voelkerentwicklungImpl.setDatum(getDatum());
 		voelkerentwicklungImpl.setStockwaage_gewicht_kg(
 			getStockwaage_gewicht_kg());
@@ -439,8 +439,8 @@ public class VoelkerentwicklungModelImpl
 		voelkerentwicklungImpl.setAbschaetzung_anzahl_individuen(
 			this.<Long>getColumnOriginalValue(
 				"abschaetzung_anzahl_individuen"));
-		voelkerentwicklungImpl.setBienenvoelker_id(
-			this.<Long>getColumnOriginalValue("bienenvoelker_id"));
+		voelkerentwicklungImpl.setBienenvolk_id(
+			this.<Long>getColumnOriginalValue("bienenvolk_id"));
 		voelkerentwicklungImpl.setDatum(
 			this.<Date>getColumnOriginalValue("datum"));
 		voelkerentwicklungImpl.setStockwaage_gewicht_kg(
@@ -540,7 +540,7 @@ public class VoelkerentwicklungModelImpl
 		voelkerentwicklungCacheModel.abschaetzung_anzahl_individuen =
 			getAbschaetzung_anzahl_individuen();
 
-		voelkerentwicklungCacheModel.bienenvoelker_id = getBienenvoelker_id();
+		voelkerentwicklungCacheModel.bienenvolk_id = getBienenvolk_id();
 
 		Date datum = getDatum();
 
@@ -650,7 +650,7 @@ public class VoelkerentwicklungModelImpl
 	private long _voelkerentwicklung_id;
 	private float _anzahl_bebrueteter_rahmen;
 	private long _abschaetzung_anzahl_individuen;
-	private long _bienenvoelker_id;
+	private long _bienenvolk_id;
 	private Date _datum;
 	private float _stockwaage_gewicht_kg;
 
@@ -687,7 +687,7 @@ public class VoelkerentwicklungModelImpl
 			"anzahl_bebrueteter_rahmen", _anzahl_bebrueteter_rahmen);
 		_columnOriginalValues.put(
 			"abschaetzung_anzahl_individuen", _abschaetzung_anzahl_individuen);
-		_columnOriginalValues.put("bienenvoelker_id", _bienenvoelker_id);
+		_columnOriginalValues.put("bienenvolk_id", _bienenvolk_id);
 		_columnOriginalValues.put("datum", _datum);
 		_columnOriginalValues.put(
 			"stockwaage_gewicht_kg", _stockwaage_gewicht_kg);
@@ -710,7 +710,7 @@ public class VoelkerentwicklungModelImpl
 
 		columnBitmasks.put("abschaetzung_anzahl_individuen", 4L);
 
-		columnBitmasks.put("bienenvoelker_id", 8L);
+		columnBitmasks.put("bienenvolk_id", 8L);
 
 		columnBitmasks.put("datum", 16L);
 

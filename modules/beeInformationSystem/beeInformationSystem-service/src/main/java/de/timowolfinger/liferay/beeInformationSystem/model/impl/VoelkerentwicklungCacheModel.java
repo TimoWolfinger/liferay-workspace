@@ -73,8 +73,8 @@ public class VoelkerentwicklungCacheModel
 		sb.append(anzahl_bebrueteter_rahmen);
 		sb.append(", abschaetzung_anzahl_individuen=");
 		sb.append(abschaetzung_anzahl_individuen);
-		sb.append(", bienenvoelker_id=");
-		sb.append(bienenvoelker_id);
+		sb.append(", bienenvolk_id=");
+		sb.append(bienenvolk_id);
 		sb.append(", datum=");
 		sb.append(datum);
 		sb.append(", stockwaage_gewicht_kg=");
@@ -94,7 +94,7 @@ public class VoelkerentwicklungCacheModel
 			anzahl_bebrueteter_rahmen);
 		voelkerentwicklungImpl.setAbschaetzung_anzahl_individuen(
 			abschaetzung_anzahl_individuen);
-		voelkerentwicklungImpl.setBienenvoelker_id(bienenvoelker_id);
+		voelkerentwicklungImpl.setBienenvolk_id(bienenvolk_id);
 
 		if (datum == Long.MIN_VALUE) {
 			voelkerentwicklungImpl.setDatum(null);
@@ -118,7 +118,7 @@ public class VoelkerentwicklungCacheModel
 
 		abschaetzung_anzahl_individuen = objectInput.readLong();
 
-		bienenvoelker_id = objectInput.readLong();
+		bienenvolk_id = objectInput.readLong();
 		datum = objectInput.readLong();
 
 		stockwaage_gewicht_kg = objectInput.readFloat();
@@ -132,7 +132,7 @@ public class VoelkerentwicklungCacheModel
 
 		objectOutput.writeLong(abschaetzung_anzahl_individuen);
 
-		objectOutput.writeLong(bienenvoelker_id);
+		objectOutput.writeLong(bienenvolk_id);
 		objectOutput.writeLong(datum);
 
 		objectOutput.writeFloat(stockwaage_gewicht_kg);
@@ -141,7 +141,7 @@ public class VoelkerentwicklungCacheModel
 	public long voelkerentwicklung_id;
 	public float anzahl_bebrueteter_rahmen;
 	public long abschaetzung_anzahl_individuen;
-	public long bienenvoelker_id;
+	public long bienenvolk_id;
 	public long datum;
 	public float stockwaage_gewicht_kg;
 

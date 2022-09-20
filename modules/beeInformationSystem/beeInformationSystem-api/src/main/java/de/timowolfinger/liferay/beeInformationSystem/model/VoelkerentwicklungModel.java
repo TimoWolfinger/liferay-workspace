@@ -98,18 +98,18 @@ public interface VoelkerentwicklungModel extends BaseModel<Voelkerentwicklung> {
 		long abschaetzung_anzahl_individuen);
 
 	/**
-	 * Returns the bienenvoelker_id of this voelkerentwicklung.
+	 * Returns the bienenvolk_id of this voelkerentwicklung.
 	 *
-	 * @return the bienenvoelker_id of this voelkerentwicklung
+	 * @return the bienenvolk_id of this voelkerentwicklung
 	 */
-	public long getBienenvoelker_id();
+	public long getBienenvolk_id();
 
 	/**
-	 * Sets the bienenvoelker_id of this voelkerentwicklung.
+	 * Sets the bienenvolk_id of this voelkerentwicklung.
 	 *
-	 * @param bienenvoelker_id the bienenvoelker_id of this voelkerentwicklung
+	 * @param bienenvolk_id the bienenvolk_id of this voelkerentwicklung
 	 */
-	public void setBienenvoelker_id(long bienenvoelker_id);
+	public void setBienenvolk_id(long bienenvolk_id);
 
 	/**
 	 * Returns the datum of this voelkerentwicklung.

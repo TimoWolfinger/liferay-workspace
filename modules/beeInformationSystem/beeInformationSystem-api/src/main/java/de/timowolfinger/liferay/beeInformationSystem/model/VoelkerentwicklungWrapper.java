@@ -48,7 +48,7 @@ public class VoelkerentwicklungWrapper
 		attributes.put(
 			"abschaetzung_anzahl_individuen",
 			getAbschaetzung_anzahl_individuen());
-		attributes.put("bienenvoelker_id", getBienenvoelker_id());
+		attributes.put("bienenvolk_id", getBienenvolk_id());
 		attributes.put("datum", getDatum());
 		attributes.put("stockwaage_gewicht_kg", getStockwaage_gewicht_kg());
 
@@ -78,10 +78,10 @@ public class VoelkerentwicklungWrapper
 			setAbschaetzung_anzahl_individuen(abschaetzung_anzahl_individuen);
 		}
 
-		Long bienenvoelker_id = (Long)attributes.get("bienenvoelker_id");
+		Long bienenvolk_id = (Long)attributes.get("bienenvolk_id");
 
-		if (bienenvoelker_id != null) {
-			setBienenvoelker_id(bienenvoelker_id);
+		if (bienenvolk_id != null) {
+			setBienenvolk_id(bienenvolk_id);
 		}
 
 		Date datum = (Date)attributes.get("datum");
@@ -124,13 +124,13 @@ public class VoelkerentwicklungWrapper
 	}
 
 	/**
-	 * Returns the bienenvoelker_id of this voelkerentwicklung.
+	 * Returns the bienenvolk_id of this voelkerentwicklung.
 	 *
-	 * @return the bienenvoelker_id of this voelkerentwicklung
+	 * @return the bienenvolk_id of this voelkerentwicklung
 	 */
 	@Override
-	public long getBienenvoelker_id() {
-		return model.getBienenvoelker_id();
+	public long getBienenvolk_id() {
+		return model.getBienenvolk_id();
 	}
 
 	/**
@@ -201,13 +201,13 @@ public class VoelkerentwicklungWrapper
 	}
 
 	/**
-	 * Sets the bienenvoelker_id of this voelkerentwicklung.
+	 * Sets the bienenvolk_id of this voelkerentwicklung.
 	 *
-	 * @param bienenvoelker_id the bienenvoelker_id of this voelkerentwicklung
+	 * @param bienenvolk_id the bienenvolk_id of this voelkerentwicklung
 	 */
 	@Override
-	public void setBienenvoelker_id(long bienenvoelker_id) {
-		model.setBienenvoelker_id(bienenvoelker_id);
+	public void setBienenvolk_id(long bienenvolk_id) {
+		model.setBienenvolk_id(bienenvolk_id);
 	}
 
 	/**

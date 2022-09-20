@@ -229,9 +229,11 @@ public class AblegerModelImpl
 		attributeSetterBiConsumers.put(
 			"datum_ablegerbildung",
 			(BiConsumer<Ableger, Date>)Ableger::setDatum_ablegerbildung);
-		attributeGetterFunctions.put("bienen_id", Ableger::getBienen_id);
+		attributeGetterFunctions.put(
+			"bienenvolk_id", Ableger::getBienenvolk_id);
 		attributeSetterBiConsumers.put(
-			"bienen_id", (BiConsumer<Ableger, Long>)Ableger::setBienen_id);
+			"bienenvolk_id",
+			(BiConsumer<Ableger, Long>)Ableger::setBienenvolk_id);
 		attributeGetterFunctions.put("erfolgreich", Ableger::getErfolgreich);
 		attributeSetterBiConsumers.put(
 			"erfolgreich",
@@ -296,17 +298,17 @@ public class AblegerModelImpl
 	}
 
 	@Override
-	public long getBienen_id() {
-		return _bienen_id;
+	public long getBienenvolk_id() {
+		return _bienenvolk_id;
 	}
 
 	@Override
-	public void setBienen_id(long bienen_id) {
+	public void setBienenvolk_id(long bienenvolk_id) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_bienen_id = bienen_id;
+		_bienenvolk_id = bienenvolk_id;
 	}
 
 	@Override
@@ -396,7 +398,7 @@ public class AblegerModelImpl
 		ablegerImpl.setAbleger_id(getAbleger_id());
 		ablegerImpl.setBezeichnung(getBezeichnung());
 		ablegerImpl.setDatum_ablegerbildung(getDatum_ablegerbildung());
-		ablegerImpl.setBienen_id(getBienen_id());
+		ablegerImpl.setBienenvolk_id(getBienenvolk_id());
 		ablegerImpl.setErfolgreich(getErfolgreich());
 		ablegerImpl.setAbgeschlossen(getAbgeschlossen());
 
@@ -415,7 +417,7 @@ public class AblegerModelImpl
 			this.<String>getColumnOriginalValue("bezeichnung"));
 		ablegerImpl.setDatum_ablegerbildung(
 			this.<Date>getColumnOriginalValue("datum_ablegerbildung"));
-		ablegerImpl.setBienen_id(
+		ablegerImpl.setBienenvolk_id(
 			this.<Long>getColumnOriginalValue("muttervolk_id"));
 		ablegerImpl.setErfolgreich(
 			this.<Boolean>getColumnOriginalValue("erfolgreich"));
@@ -522,7 +524,7 @@ public class AblegerModelImpl
 			ablegerCacheModel.datum_ablegerbildung = Long.MIN_VALUE;
 		}
 
-		ablegerCacheModel.bienen_id = getBienen_id();
+		ablegerCacheModel.bienenvolk_id = getBienenvolk_id();
 
 		Boolean erfolgreich = getErfolgreich();
 
@@ -631,7 +633,7 @@ public class AblegerModelImpl
 	private long _ableger_id;
 	private String _bezeichnung;
 	private Date _datum_ablegerbildung;
-	private long _bienen_id;
+	private long _bienenvolk_id;
 	private Boolean _erfolgreich;
 	private Boolean _abgeschlossen;
 
@@ -668,7 +670,7 @@ public class AblegerModelImpl
 		_columnOriginalValues.put("bezeichnung", _bezeichnung);
 		_columnOriginalValues.put(
 			"datum_ablegerbildung", _datum_ablegerbildung);
-		_columnOriginalValues.put("muttervolk_id", _bienen_id);
+		_columnOriginalValues.put("muttervolk_id", _bienenvolk_id);
 		_columnOriginalValues.put("erfolgreich", _erfolgreich);
 		_columnOriginalValues.put("abgeschlossen", _abgeschlossen);
 	}
@@ -678,7 +680,7 @@ public class AblegerModelImpl
 	static {
 		Map<String, String> attributeNames = new HashMap<>();
 
-		attributeNames.put("muttervolk_id", "bienen_id");
+		attributeNames.put("muttervolk_id", "bienenvolk_id");
 
 		_attributeNames = Collections.unmodifiableMap(attributeNames);
 	}

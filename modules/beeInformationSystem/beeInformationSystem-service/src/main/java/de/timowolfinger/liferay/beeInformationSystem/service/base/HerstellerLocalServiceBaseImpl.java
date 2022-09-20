@@ -43,17 +43,17 @@ import de.timowolfinger.liferay.beeInformationSystem.model.Hersteller;
 import de.timowolfinger.liferay.beeInformationSystem.service.HerstellerLocalService;
 import de.timowolfinger.liferay.beeInformationSystem.service.HerstellerLocalServiceUtil;
 import de.timowolfinger.liferay.beeInformationSystem.service.persistence.AblegerPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BehandlungenPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BeutemassePersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BienenrassenPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BienenvoelkerPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.FuetterungenPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BehandlungPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BeutemassPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BienenrassePersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.BienenvolkPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.FuetterungPersistence;
 import de.timowolfinger.liferay.beeInformationSystem.service.persistence.FuttermittelPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.GesundheitszeugnissePersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.GesundheitszeugnisPersistence;
 import de.timowolfinger.liferay.beeInformationSystem.service.persistence.HerstellerPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.HonigerntenPersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.MedikamentePersistence;
-import de.timowolfinger.liferay.beeInformationSystem.service.persistence.TrachtenPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.HonigerntePersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.MedikamentPersistence;
+import de.timowolfinger.liferay.beeInformationSystem.service.persistence.TrachtPersistence;
 import de.timowolfinger.liferay.beeInformationSystem.service.persistence.VoelkerentwicklungPersistence;
 
 import java.io.Serializable;
@@ -471,25 +471,25 @@ public abstract class HerstellerLocalServiceBaseImpl
 	protected AblegerPersistence ablegerPersistence;
 
 	@Reference
-	protected BehandlungenPersistence behandlungenPersistence;
+	protected BehandlungPersistence behandlungPersistence;
 
 	@Reference
-	protected BeutemassePersistence beutemassePersistence;
+	protected BeutemassPersistence beutemassPersistence;
 
 	@Reference
-	protected BienenrassenPersistence bienenrassenPersistence;
+	protected BienenrassePersistence bienenrassePersistence;
 
 	@Reference
-	protected BienenvoelkerPersistence bienenvoelkerPersistence;
+	protected BienenvolkPersistence bienenvolkPersistence;
 
 	@Reference
-	protected FuetterungenPersistence fuetterungenPersistence;
+	protected FuetterungPersistence fuetterungPersistence;
 
 	@Reference
 	protected FuttermittelPersistence futtermittelPersistence;
 
 	@Reference
-	protected GesundheitszeugnissePersistence gesundheitszeugnissePersistence;
+	protected GesundheitszeugnisPersistence gesundheitszeugnisPersistence;
 
 	protected HerstellerLocalService herstellerLocalService;
 
@@ -497,13 +497,13 @@ public abstract class HerstellerLocalServiceBaseImpl
 	protected HerstellerPersistence herstellerPersistence;
 
 	@Reference
-	protected HonigerntenPersistence honigerntenPersistence;
+	protected HonigerntePersistence honigerntePersistence;
 
 	@Reference
-	protected MedikamentePersistence medikamentePersistence;
+	protected MedikamentPersistence medikamentPersistence;
 
 	@Reference
-	protected TrachtenPersistence trachtenPersistence;
+	protected TrachtPersistence trachtPersistence;
 
 	@Reference
 	protected VoelkerentwicklungPersistence voelkerentwicklungPersistence;

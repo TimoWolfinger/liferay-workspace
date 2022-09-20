@@ -93,7 +93,7 @@ public class AblegerPersistenceImpl
 	public AblegerPersistenceImpl() {
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
-		dbColumnNames.put("bienen_id", "muttervolk_id");
+		dbColumnNames.put("bienenvolk_id", "muttervolk_id");
 
 		setDBColumnNames(dbColumnNames);
 
@@ -660,7 +660,7 @@ public class AblegerPersistenceImpl
 		AblegerPersistenceImpl.class);
 
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(
-		new String[] {"bienen_id"});
+		new String[] {"bienenvolk_id"});
 
 	@Override
 	protected FinderCache getFinderCache() {

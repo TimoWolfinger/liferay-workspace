@@ -69,8 +69,8 @@ public class AblegerCacheModel implements CacheModel<Ableger>, Externalizable {
 		sb.append(bezeichnung);
 		sb.append(", datum_ablegerbildung=");
 		sb.append(datum_ablegerbildung);
-		sb.append(", bienen_id=");
-		sb.append(bienen_id);
+		sb.append(", bienenvolk_id=");
+		sb.append(bienenvolk_id);
 		sb.append(", erfolgreich=");
 		sb.append(erfolgreich);
 		sb.append(", abgeschlossen=");
@@ -100,7 +100,7 @@ public class AblegerCacheModel implements CacheModel<Ableger>, Externalizable {
 			ablegerImpl.setDatum_ablegerbildung(new Date(datum_ablegerbildung));
 		}
 
-		ablegerImpl.setBienen_id(bienen_id);
+		ablegerImpl.setBienenvolk_id(bienenvolk_id);
 		ablegerImpl.setErfolgreich(erfolgreich);
 		ablegerImpl.setAbgeschlossen(abgeschlossen);
 
@@ -115,7 +115,7 @@ public class AblegerCacheModel implements CacheModel<Ableger>, Externalizable {
 		bezeichnung = objectInput.readUTF();
 		datum_ablegerbildung = objectInput.readLong();
 
-		bienen_id = objectInput.readLong();
+		bienenvolk_id = objectInput.readLong();
 
 		erfolgreich = objectInput.readBoolean();
 
@@ -135,7 +135,7 @@ public class AblegerCacheModel implements CacheModel<Ableger>, Externalizable {
 
 		objectOutput.writeLong(datum_ablegerbildung);
 
-		objectOutput.writeLong(bienen_id);
+		objectOutput.writeLong(bienenvolk_id);
 
 		objectOutput.writeBoolean(erfolgreich);
 
@@ -145,7 +145,7 @@ public class AblegerCacheModel implements CacheModel<Ableger>, Externalizable {
 	public long ableger_id;
 	public String bezeichnung;
 	public long datum_ablegerbildung;
-	public long bienen_id;
+	public long bienenvolk_id;
 	public boolean erfolgreich;
 	public boolean abgeschlossen;
 

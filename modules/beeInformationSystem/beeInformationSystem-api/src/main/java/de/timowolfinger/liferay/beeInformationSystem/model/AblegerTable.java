@@ -39,7 +39,7 @@ public class AblegerTable extends BaseTable<AblegerTable> {
 	public final Column<AblegerTable, Date> datum_ablegerbildung = createColumn(
 		"datum_ablegerbildung", Date.class, Types.TIMESTAMP,
 		Column.FLAG_DEFAULT);
-	public final Column<AblegerTable, Long> bienen_id = createColumn(
+	public final Column<AblegerTable, Long> bienenvolk_id = createColumn(
 		"muttervolk_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<AblegerTable, Boolean> erfolgreich = createColumn(
 		"erfolgreich", Boolean.class, Types.BOOLEAN, Column.FLAG_DEFAULT);

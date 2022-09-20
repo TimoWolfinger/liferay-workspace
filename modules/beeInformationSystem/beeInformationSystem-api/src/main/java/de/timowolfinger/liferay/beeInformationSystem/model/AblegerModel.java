@@ -99,18 +99,18 @@ public interface AblegerModel extends BaseModel<Ableger> {
 	public void setDatum_ablegerbildung(Date datum_ablegerbildung);
 
 	/**
-	 * Returns the bienen_id of this ableger.
+	 * Returns the bienenvolk_id of this ableger.
 	 *
-	 * @return the bienen_id of this ableger
+	 * @return the bienenvolk_id of this ableger
 	 */
-	public long getBienen_id();
+	public long getBienenvolk_id();
 
 	/**
-	 * Sets the bienen_id of this ableger.
+	 * Sets the bienenvolk_id of this ableger.
 	 *
-	 * @param bienen_id the bienen_id of this ableger
+	 * @param bienenvolk_id the bienenvolk_id of this ableger
 	 */
-	public void setBienen_id(long bienen_id);
+	public void setBienenvolk_id(long bienenvolk_id);
 
 	/**
 	 * Returns the erfolgreich of this ableger.

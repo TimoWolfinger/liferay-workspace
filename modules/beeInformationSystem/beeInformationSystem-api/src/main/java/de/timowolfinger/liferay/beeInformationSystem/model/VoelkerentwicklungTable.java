@@ -46,9 +46,9 @@ public class VoelkerentwicklungTable
 		abschaetzung_anzahl_individuen = createColumn(
 			"abschaetzung_anzahl_individuen", Long.class, Types.BIGINT,
 			Column.FLAG_DEFAULT);
-	public final Column<VoelkerentwicklungTable, Long> bienenvoelker_id =
+	public final Column<VoelkerentwicklungTable, Long> bienenvolk_id =
 		createColumn(
-			"bienenvoelker_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+			"bienenvolk_id", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<VoelkerentwicklungTable, Date> datum = createColumn(
 		"datum", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<VoelkerentwicklungTable, Float> stockwaage_gewicht_kg =

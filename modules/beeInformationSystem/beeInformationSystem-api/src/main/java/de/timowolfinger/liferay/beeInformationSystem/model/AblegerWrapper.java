@@ -45,7 +45,7 @@ public class AblegerWrapper
 		attributes.put("ableger_id", getAbleger_id());
 		attributes.put("bezeichnung", getBezeichnung());
 		attributes.put("datum_ablegerbildung", getDatum_ablegerbildung());
-		attributes.put("bienen_id", getBienen_id());
+		attributes.put("bienenvolk_id", getBienenvolk_id());
 		attributes.put("erfolgreich", getErfolgreich());
 		attributes.put("abgeschlossen", getAbgeschlossen());
 
@@ -73,10 +73,10 @@ public class AblegerWrapper
 			setDatum_ablegerbildung(datum_ablegerbildung);
 		}
 
-		Long bienen_id = (Long)attributes.get("bienen_id");
+		Long bienenvolk_id = (Long)attributes.get("bienenvolk_id");
 
-		if (bienen_id != null) {
-			setBienen_id(bienen_id);
+		if (bienenvolk_id != null) {
+			setBienenvolk_id(bienenvolk_id);
 		}
 
 		Boolean erfolgreich = (Boolean)attributes.get("erfolgreich");
@@ -128,13 +128,13 @@ public class AblegerWrapper
 	}
 
 	/**
-	 * Returns the bienen_id of this ableger.
+	 * Returns the bienenvolk_id of this ableger.
 	 *
-	 * @return the bienen_id of this ableger
+	 * @return the bienenvolk_id of this ableger
 	 */
 	@Override
-	public long getBienen_id() {
-		return model.getBienen_id();
+	public long getBienenvolk_id() {
+		return model.getBienenvolk_id();
 	}
 
 	/**
@@ -203,13 +203,13 @@ public class AblegerWrapper
 	}
 
 	/**
-	 * Sets the bienen_id of this ableger.
+	 * Sets the bienenvolk_id of this ableger.
 	 *
-	 * @param bienen_id the bienen_id of this ableger
+	 * @param bienenvolk_id the bienenvolk_id of this ableger
 	 */
 	@Override
-	public void setBienen_id(long bienen_id) {
-		model.setBienen_id(bienen_id);
+	public void setBienenvolk_id(long bienenvolk_id) {
+		model.setBienenvolk_id(bienenvolk_id);
 	}
 
 	/**

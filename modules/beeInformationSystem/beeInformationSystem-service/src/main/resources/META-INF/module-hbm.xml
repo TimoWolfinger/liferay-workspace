@@ -3,17 +3,17 @@
 
 <hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Ableger" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Behandlungen" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Beutemasse" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Bienenrassen" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Bienenvoelker" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Fuetterungen" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Behandlung" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Beutemass" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Bienenrasse" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Bienenvolk" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Fuetterung" />
 	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Futtermittel" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Gesundheitszeugnisse" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Gesundheitszeugnis" />
 	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Hersteller" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Honigernten" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Medikamente" />
-	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Trachten" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Honigernte" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Medikament" />
+	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Tracht" />
 	<import class="de.timowolfinger.liferay.beeInformationSystem.model.Voelkerentwicklung" />
 	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.AblegerImpl" table="ableger">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="ableger_id" type="long">
@@ -21,12 +21,12 @@
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bezeichnung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="datum_ablegerbildung" type="org.hibernate.type.TimestampType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="muttervolk_id" name="bienen_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="muttervolk_id" name="bienenvolk_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="erfolgreich" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="abgeschlossen" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BehandlungenImpl" table="behandlungen">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="behandlungen_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BehandlungImpl" table="behandlung">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="behandlung_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvolk_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -34,26 +34,26 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="beginn" type="org.hibernate.type.TimestampType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="ende" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BeutemasseImpl" table="beutemasse">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="beutemasse_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BeutemassImpl" table="beutemass">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="beutemass_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BienenrassenImpl" table="bienenrassen">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenrassen_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BienenrasseImpl" table="bienenrasse">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenrasse_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BienenvoelkerImpl" table="bienenvoelker">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvoelker_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.BienenvolkImpl" table="bienenvolk">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvolk_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bezeichnung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="weisel_jahr" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bemerkungen" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="muttervolk" name="bienenvoelker_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="muttervolk" name="bienenvolk_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenrasse_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="beutemass_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="geo_coordinaten" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -62,8 +62,8 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="aufloesung_tod_jahr" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="gesundheitszeugnis_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.FuetterungenImpl" table="fuetterungen">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="fuetterungen_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.FuetterungImpl" table="fuetterung">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="fuetterung_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="futtermittel_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -80,8 +80,8 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="hersteller_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="gebindegroesse" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.GesundheitszeugnisseImpl" table="gesundheitszeugnisse">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="gesundheitszeugnisse_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.GesundheitszeugnisImpl" table="gesundheitszeugnis">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="gesundheitszeugnis_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="seriennummer_lt_form" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -95,8 +95,8 @@
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.HonigerntenImpl" table="honigernten">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="honigernten_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.HonigernteImpl" table="honigernte">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="honigernte_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="erntedatum" type="org.hibernate.type.TimestampType" />
@@ -104,16 +104,16 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvolk_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="tracht_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.MedikamenteImpl" table="medikamente">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="medikamente_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.MedikamentImpl" table="medikament">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="medikament_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="hersteller_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="dosierung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.TrachtenImpl" table="trachten">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="trachten_id" type="long">
+	<class name="de.timowolfinger.liferay.beeInformationSystem.model.impl.TrachtImpl" table="tracht">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="tracht_id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bezeichnung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -124,7 +124,7 @@
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="anzahl_bebrueteter_rahmen" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="abschaetzung_anzahl_individuen" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvoelker_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="bienenvolk_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="datum" type="org.hibernate.type.TimestampType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="stockwaage_gewicht_kg" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
 	</class>
