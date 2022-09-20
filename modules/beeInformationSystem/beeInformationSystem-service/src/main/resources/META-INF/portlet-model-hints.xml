@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Ableger">
+		<field name="ableger_id" type="long" />
+		<field name="bezeichnung" type="String" />
+		<field name="datum_ablegerbildung" type="Date" />
+		<field name="bienen_id" type="long" />
+		<field name="erfolgreich" type="Boolean" />
+		<field name="abgeschlossen" type="Boolean" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Behandlungen">
+		<field name="behandlungen_id" type="long" />
+		<field name="bienenvolk_id" type="long" />
+		<field name="medikament_id" type="long" />
+		<field name="beginn" type="Date" />
+		<field name="ende" type="Date" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Beutemasse">
+		<field name="beutemasse_id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Bienenrassen">
+		<field name="bienenrassen_id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Bienenvoelker">
+		<field name="bienenvoelker_id" type="long" />
+		<field name="bezeichnung" type="String" />
+		<field name="weisel_jahr" type="long" />
+		<field name="bemerkungen" type="String" />
+		<field name="bienenvoelker_id" type="long" />
+		<field name="bienenrasse_id" type="long" />
+		<field name="beutemass_id" type="long" />
+		<field name="geo_coordinaten" type="String" />
+		<field name="anschaffung_ableger_jahr" type="int" />
+		<field name="aktiv" type="Boolean" />
+		<field name="aufloesung_tod_jahr" type="int" />
+		<field name="gesundheitszeugnis_id" type="long" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Fuetterungen">
+		<field name="fuetterungen_id" type="long" />
+		<field name="futtermittel_id" type="long" />
+		<field name="beginn" type="Date" />
+		<field name="ende" type="Date" />
+		<field name="menge_kg" type="long" />
+		<field name="bienenvolk_id" type="long" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Futtermittel">
+		<field name="futtermittel_id" type="long" />
+		<field name="name" type="String" />
+		<field name="hersteller_id" type="long" />
+		<field name="gebindegroesse" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Gesundheitszeugnisse">
+		<field name="gesundheitszeugnisse_id" type="long" />
+		<field name="seriennummer_lt_form" type="String" />
+		<field name="dokument" type="String" />
+		<field name="ausstellungsdatum" type="Date" />
+		<field name="dokument_dateityp" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Hersteller">
+		<field name="hersteller_id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Honigernten">
+		<field name="honigernten_id" type="long" />
+		<field name="erntedatum" type="Date" />
+		<field name="erntemenge_kg" type="int" />
+		<field name="bienenvolk_id" type="long" />
+		<field name="tracht_id" type="long" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Medikamente">
+		<field name="medikamente_id" type="long" />
+		<field name="name" type="String" />
+		<field name="hersteller_id" type="long" />
+		<field name="dosierung" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Trachten">
+		<field name="trachten_id" type="long" />
+		<field name="bezeichnung" type="String" />
+	</model>
+	<model name="de.timowolfinger.liferay.beeInformationSystem.model.Voelkerentwicklung">
+		<field name="voelkerentwicklung_id" type="long" />
+		<field name="anzahl_bebrueteter_rahmen" type="float" />
+		<field name="abschaetzung_anzahl_individuen" type="long" />
+		<field name="bienenvoelker_id" type="long" />
+		<field name="datum" type="Date" />
+		<field name="stockwaage_gewicht_kg" type="float" />
+	</model>
+</model-hints>
