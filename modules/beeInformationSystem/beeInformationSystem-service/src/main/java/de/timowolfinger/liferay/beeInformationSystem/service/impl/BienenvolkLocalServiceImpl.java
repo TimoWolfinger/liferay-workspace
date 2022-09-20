@@ -28,4 +28,29 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class BienenvolkLocalServiceImpl extends BienenvolkLocalServiceBaseImpl {
+
+	public Bienenvolk addBienenvolk(String bezeichnung, 
+		long weisel_jahr, String bemerkungen, long muttervolk_id, 
+		long bienenrasse_id, long beutemass_id, String geo_coordinaten, 
+		int anschaffung_ableger_jahr, Boolean aktiv, 
+		int aufloesung_tod_jahr, long gesundheitszeugnis_id ) {
+
+			long bienenvolk_id = counterLocalService.increment();
+
+			Bienenvolk bienenvolk = bienenvolkPersistance.create(bienenvolk_id);
+			bienenvolk.setBezeichnung(bezeichnung);
+			bienenvolk.setWeisel_jahr(weisel_jahr);
+			bienenvolk.setBemerkungen(bemerkungen);
+			bienenvolk.setBienenvolk_id(muttervolk_id);
+			bienenvolk.setBienenrasse_id(bienenrasse_id);
+			bienenvolk.setBeutemassId(beutemass_id);
+			bienenvolk.setGeoCoordinaten(geo_coordinaten);
+			bienenvolk.setAnschaffung_ableger_jar(anschaffung_ableger_jahr);
+			bienenvolk.setAktiv(aktiv);
+			bienenvolk.setAufloesung_tod_jahr(aufloesung_tod_jahr);
+			bienenvolk.setGesundheitszeugnis_id(gesundheitszeugnis_id);
+
+			bienenvolkPersistance.update(bienenvolk);
+			return bienenvolk;
+	}
 }

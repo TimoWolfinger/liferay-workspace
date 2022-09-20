@@ -29,4 +29,18 @@ import org.osgi.service.component.annotations.Component;
 )
 public class FuttermittelLocalServiceImpl
 	extends FuttermittelLocalServiceBaseImpl {
+
+		public Futtermittel addFuttermittel(String name, long hersteller_id, String gebindegroesse) {
+
+			long futtermittel_id = counterLocalService.increment();
+
+			Futtermittel futtermittel = futtermittelPersistence.create(futtermittel_id);
+
+			futtermittel.setName(name);
+			futtermittel.setHerstellerId(hersteller_id);
+			futtermittel.setGebindegroesse(gebindegroesse);
+
+			futtermittelPersistence.update(futtermittel);
+			return futtermittel;
+		}
 }

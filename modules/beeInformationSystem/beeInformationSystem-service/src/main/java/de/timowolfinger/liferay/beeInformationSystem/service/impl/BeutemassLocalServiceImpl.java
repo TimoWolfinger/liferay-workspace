@@ -28,4 +28,14 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class BeutemassLocalServiceImpl extends BeutemassLocalServiceBaseImpl {
+
+	public Beutemass addBeutemass(String bezeichnung) {
+		Long beutemass_id = counterLocalService.increment();
+
+		Beutemass beutemass = beutemassPersistance.create(beutemass_id);
+		beutemass.setBezeichnung(bezeichnung);
+
+		beutemassPersistance.update();
+		return beutemass;
+	}
 }

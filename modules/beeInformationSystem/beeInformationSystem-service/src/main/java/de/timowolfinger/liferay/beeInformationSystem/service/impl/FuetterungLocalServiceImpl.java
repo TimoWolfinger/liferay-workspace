@@ -28,4 +28,20 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class FuetterungLocalServiceImpl extends FuetterungLocalServiceBaseImpl {
+
+	public Fuetterung addFuetterung( long futtermittel_id, Date beginn, Date ende, long menge_kg, long bienenvolk_id ) {
+
+		long fuetterung_id = counterLocalService.increment();
+
+		Fuetterung fuetterung = fuetterungPersistance.create(fuetterung_id);
+
+		fuetterung.setFuttermittel_id(futtermittel_id);
+		fuetterung.setBeginn(beginn);
+		fuetterung.setEnde(ende);
+		fuetterung.setMenge_kg(menge_kg);
+		fuetterung.setBienenvolk_id(bienenvolk_id);
+
+		bienenvolkPersistance.update(bienenvolk);
+		return biennenvolk;
+	}
 }

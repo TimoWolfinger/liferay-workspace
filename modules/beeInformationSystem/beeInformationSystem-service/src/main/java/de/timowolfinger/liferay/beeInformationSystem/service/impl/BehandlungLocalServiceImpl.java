@@ -28,4 +28,18 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class BehandlungLocalServiceImpl extends BehandlungLocalServiceBaseImpl {
+
+	public Behandlung addBehandlung(Long bienenvolk_id, Long medikament_id, Date beginn, Date ende) {
+		Long behandlung_id = counterLocalService.increment();
+
+		Behandlung behandlung = behandlungPersistance.create(behandlung_id);
+		behandlung.setBienenvolk_id(bienenvolk_id);
+		behandlung.setMedikament_id(medikament_id);
+		behandlung.setBeginn(beginn);
+		behandlung.setEnde(ende);
+
+		behandlungPersistance.update(behandlung);
+		return behandlung;
+	}
+
 }

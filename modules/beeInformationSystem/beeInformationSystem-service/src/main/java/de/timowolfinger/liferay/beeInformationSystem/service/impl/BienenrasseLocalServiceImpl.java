@@ -29,4 +29,14 @@ import org.osgi.service.component.annotations.Component;
 )
 public class BienenrasseLocalServiceImpl
 	extends BienenrasseLocalServiceBaseImpl {
+
+		public Bienenrasse addBienenrasse(String bezeichnung) {
+			Long bienenrasse_id counterLocalService.increment();
+
+			Bienenrasse bienenrasse = bienenrassePersistance.create(bienenrasse_id);
+			bienenrasse.setBezeichnung(bezeichnung);
+
+			bienenrassePersistance.update(bienenrasse);
+			return bienenrasse;
+		}
 }
