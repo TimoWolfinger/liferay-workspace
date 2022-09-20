@@ -21,11 +21,27 @@ import de.timowolfinger.liferay.beeInformationSystem.service.base.AblegerLocalSe
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Brian Wing Shun Chan, Timo Wolfinger
  */
 @Component(
 	property = "model.class.name=de.timowolfinger.liferay.beeInformationSystem.model.Ableger",
 	service = AopService.class
 )
 public class AblegerLocalServiceImpl extends AblegerLocalServiceBaseImpl {
+
+	public Ableger addAbleger(String bezeichnung, Date datum_ablegerbildung, Long muttervolk_id, Boolean erfolgreich, Boolean abgeschlossen) {
+
+		Long ablegerId = counterLocalService.increment();
+
+		Ableger ableger = ablegerPersistance.create(ablegerId);
+
+		ableger.setBezeichnung(bezeichnung);
+		ableger.setDatum_ablegerbildung(datum_ablegerbildung);
+		ableger.setBienenvolk_id(muttervolk_id);
+		ableger.setErfolgreich(erfolgreich);
+		ableger.setAbgeschlossen(abgeschlossen);
+
+		ablegerPersistance.update(ableger);
+		return ableger;
+	}
 }
