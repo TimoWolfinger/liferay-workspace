@@ -1,2 +1,0 @@
-compileOnly project(":modules:beeInformationSystem:beeInformationSystem-api")
-compileOnly project(":modules:beeInformationSystem:beeInformationSystem-service")
